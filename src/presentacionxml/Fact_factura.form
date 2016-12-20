@@ -58,72 +58,75 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="masterScrollPane" pref="918" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                          <Component id="masterScrollPane" alignment="1" pref="925" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="educacionLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="vestimentaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="otrosLabel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="numeroFacturaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="educacionField" max="32767" attributes="0"/>
-                                  <Component id="vestimentaField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="otrosField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="numeroFacturaField" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="fechaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="totalSinIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ivaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="totalConIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="viviendaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alimentacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="saludLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="vestimentaLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="alimentacionField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="viviendaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="totalConIvaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ivaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="totalSinIvaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fechaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="saludField" alignment="1" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="fechaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="totalSinIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ivaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="totalConIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="viviendaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="alimentacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="saludLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="educacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="otrosLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="alimentacionField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="viviendaField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="ivaField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="totalSinIvaField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="fechaField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="saludField" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="educacionField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="vestimentaField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="otrosField" alignment="0" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                                                      <Component id="jLabel1" min="-2" pref="216" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="totalConIvaField" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="deleteButton" min="-2" pref="46" max="-2" attributes="0"/>
+                                  <Component id="newButton" min="-2" pref="46" max="-2" attributes="0"/>
+                                  <Component id="refreshButton" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                                  <Component id="saveButton" min="-2" pref="46" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="newButton" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteButton" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="refreshButton" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="saveButton" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="numeroFacturaLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="numeroFacturaField" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -132,68 +135,77 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="fechaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fechaField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="totalSinIvaField" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalSinIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ivaField" min="-2" max="-2" attributes="0"/>
+                          <Component id="ivaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="totalConIvaField" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalConIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="viviendaField" min="-2" max="-2" attributes="0"/>
+                          <Component id="viviendaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="alimentacionField" min="-2" max="-2" attributes="0"/>
+                          <Component id="alimentacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="saludField" min="-2" max="-2" attributes="0"/>
+                          <Component id="saludLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="educacionField" min="-2" max="-2" attributes="0"/>
+                          <Component id="educacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="vestimentaField" min="-2" max="-2" attributes="0"/>
+                          <Component id="vestimentaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="otrosField" min="-2" max="-2" attributes="0"/>
+                          <Component id="otrosLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="numeroFacturaField" min="-2" max="-2" attributes="0"/>
+                          <Component id="numeroFacturaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="newButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="refreshButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="saveButton" min="-2" pref="42" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="fechaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fechaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="newButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="totalSinIvaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="totalSinIvaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ivaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ivaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="refreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="totalConIvaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="totalConIvaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="saveButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="viviendaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="viviendaField" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="alimentacionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="alimentacionField" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="saludLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="saludField" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="educacionField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="educacionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="vestimentaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="vestimentaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="otrosField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="otrosLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="numeroFacturaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="numeroFacturaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="masterScrollPane" min="-2" pref="172" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="masterScrollPane" pref="213" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -264,56 +276,89 @@
     </Container>
     <Component class="javax.swing.JLabel" name="fechaLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Fecha:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="totalSinIvaLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Total Sin Iva:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="ivaLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Iva:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="totalConIvaLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Total Con Iva:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="viviendaLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Vivienda:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="alimentacionLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Alimentacion:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="saludLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Salud:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="educacionLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Educacion:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="vestimentaLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Vestimenta:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="otrosLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Otros:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="numeroFacturaLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Numero Factura:"/>
       </Properties>
     </Component>

@@ -269,7 +269,7 @@ public class Fact_proveedor extends JPanel {
             presentacionxml.Proveedor p = list.get(masterTable.convertRowIndexToModel(selected[idx]));
             toRemove.add(p);
             entityManager.remove(p);
-            JOptionPane.showMessageDialog(null, "Operación de eliminar fue realizada correctamente");
+            JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
         }
         list.removeAll(toRemove);
     }//GEN-LAST:event_deleteButtonActionPerformed
@@ -287,7 +287,7 @@ public class Fact_proveedor extends JPanel {
         try {
             entityManager.getTransaction().commit();
             entityManager.getTransaction().begin();
-            JOptionPane.showMessageDialog(null, "Operación de guardar fue realizada correctamente");
+            JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
         } catch (RollbackException rex) {
             rex.printStackTrace();
             entityManager.getTransaction().begin();
