@@ -159,9 +159,9 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-        facturaPrincipal p1 = new facturaPrincipal();
-
-        p1.run();
+//        facturaPrincipal p1 = new facturaPrincipal();
+//
+//        p1.run();
 
 //        this.hide();
 
@@ -169,10 +169,10 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        Proveedor p2 = new Proveedor();
-
-        p2.run();
-       
+//        Proveedor p2 = new Proveedor();
+//
+//        p2.run();
+//       
 //                    this.hide();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
