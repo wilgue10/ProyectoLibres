@@ -179,6 +179,8 @@ public class Fact_seleccion extends JFrame {
                         }
                         if (paso == true) {
                             JOptionPane.showMessageDialog(null, "Factura n�: " + i + " cargada exitosamente");
+                            Fact_reorganizadorDatos fselect=new Fact_reorganizadorDatos();
+                            fselect.reorganizardatos();
                         }
                     } catch (SQLException e1) {
                         // TODO Auto-generated catch block

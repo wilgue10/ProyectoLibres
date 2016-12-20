@@ -169,9 +169,9 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-//        Proveedor p2 = new Proveedor();
-//
-//        p2.run();
+       Fact_proveedor p2 = new Fact_proveedor();
+
+       p2.run();
 //       
 //                    this.hide();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
