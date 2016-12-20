@@ -56,6 +56,7 @@ public class Fact_proveedor extends JPanel {
         refreshButton = new javax.swing.JButton();
         newButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         FormListener formListener = new FormListener();
 
@@ -135,6 +136,11 @@ public class Fact_proveedor extends JPanel {
 
         deleteButton.addActionListener(formListener);
 
+        jLabel1.setFont(new java.awt.Font("Papyrus", 1, 24)); // NOI18N
+        jLabel1.setText("Ingreso Proveedores");
+        jLabel1.setToolTipText("");
+        jLabel1.setAutoscrolls(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,19 +151,25 @@ public class Fact_proveedor extends JPanel {
                     .addComponent(masterScrollPane)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rucLabel)
-                            .addComponent(direccionLabel)
-                            .addComponent(telefonoLabel)
-                            .addComponent(ciudadLabel)
-                            .addComponent(nombreLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rucField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-                            .addComponent(direccionField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-                            .addComponent(telefonoField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-                            .addComponent(ciudadField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-                            .addComponent(nombreField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
-                        .addGap(42, 42, 42)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rucLabel)
+                                    .addComponent(direccionLabel)
+                                    .addComponent(telefonoLabel)
+                                    .addComponent(ciudadLabel)
+                                    .addComponent(nombreLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rucField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                                    .addComponent(direccionField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                                    .addComponent(telefonoField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                                    .addComponent(ciudadField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                                    .addComponent(nombreField, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
+                                .addGap(42, 42, 42))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(117, 117, 117)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,8 +181,16 @@ public class Fact_proveedor extends JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(34, Short.MAX_VALUE)
+                        .addComponent(newButton)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rucLabel)
@@ -192,9 +212,7 @@ public class Fact_proveedor extends JPanel {
                             .addComponent(nombreLabel)
                             .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(70, 70, 70))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(newButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(deleteButton)
                         .addGap(18, 18, 18)
                         .addComponent(refreshButton)
@@ -202,7 +220,7 @@ public class Fact_proveedor extends JPanel {
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addComponent(masterScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
 
         bindingGroup.bind();
@@ -286,6 +304,7 @@ public class Fact_proveedor extends JPanel {
     private javax.swing.JTextField direccionField;
     private javax.swing.JLabel direccionLabel;
     private javax.persistence.EntityManager entityManager;
+    private javax.swing.JLabel jLabel1;
     private java.util.List<presentacionxml.Proveedor> list;
     private javax.swing.JScrollPane masterScrollPane;
     private javax.swing.JTable masterTable;
