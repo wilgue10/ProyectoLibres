@@ -13,6 +13,7 @@ import java.util.List;
 import javax.persistence.RollbackException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -164,6 +165,9 @@ public class Fact_factura extends JPanel {
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), ivaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        ivaField.addFocusListener(formListener);
+        ivaField.addActionListener(formListener);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.totalConIva}"), totalConIvaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
@@ -362,7 +366,7 @@ public class Fact_factura extends JPanel {
 
     // Code for dispatching events from components to event handlers.
 
-    private class FormListener implements java.awt.event.ActionListener {
+    private class FormListener implements java.awt.event.ActionListener, java.awt.event.FocusListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             if (evt.getSource() == totalSinIvaField) {
@@ -379,6 +383,18 @@ public class Fact_factura extends JPanel {
             }
             else if (evt.getSource() == deleteButton) {
                 Fact_factura.this.deleteButtonActionPerformed(evt);
+            }
+            else if (evt.getSource() == ivaField) {
+                Fact_factura.this.ivaFieldActionPerformed(evt);
+            }
+        }
+
+        public void focusGained(java.awt.event.FocusEvent evt) {
+        }
+
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (evt.getSource() == ivaField) {
+                Fact_factura.this.ivaFieldFocusLost(evt);
             }
         }
     }// </editor-fold>//GEN-END:initComponents
@@ -437,6 +453,25 @@ public class Fact_factura extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_totalSinIvaFieldActionPerformed
 
+    private void ivaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ivaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ivaFieldActionPerformed
+
+    private void ivaFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ivaFieldFocusLost
+        // TODO add your handling code here:
+        
+        calcularIva();
+    }//GEN-LAST:event_ivaFieldFocusLost
+
+    public double calcularIva(){
+        
+        String sinIva = (totalSinIvaField.getText());
+        double valorSinIva = Double.parseDouble(sinIva);
+        double ivaCalculado = valorSinIva*0.14;
+        return ivaCalculado;
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alimentacionField;
