@@ -378,6 +378,7 @@
         <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="totalSinIvaField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="totalSinIvaFieldFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="totalSinIvaFieldActionPerformed"/>
       </Events>
     </Component>

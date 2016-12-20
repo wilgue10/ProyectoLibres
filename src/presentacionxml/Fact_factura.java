@@ -20,7 +20,7 @@ import javax.swing.JTextField;
  * @author Wilmer
  */
 public class Fact_factura extends JPanel {
-    
+
     public Fact_factura() {
         initComponents();
         if (!Beans.isDesignTime()) {
@@ -158,6 +158,7 @@ public class Fact_factura extends JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), totalSinIvaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
+        totalSinIvaField.addFocusListener(formListener);
         totalSinIvaField.addActionListener(formListener);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.iva}"), ivaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
@@ -372,6 +373,9 @@ public class Fact_factura extends JPanel {
             if (evt.getSource() == totalSinIvaField) {
                 Fact_factura.this.totalSinIvaFieldActionPerformed(evt);
             }
+            else if (evt.getSource() == ivaField) {
+                Fact_factura.this.ivaFieldActionPerformed(evt);
+            }
             else if (evt.getSource() == saveButton) {
                 Fact_factura.this.saveButtonActionPerformed(evt);
             }
@@ -384,9 +388,6 @@ public class Fact_factura extends JPanel {
             else if (evt.getSource() == deleteButton) {
                 Fact_factura.this.deleteButtonActionPerformed(evt);
             }
-            else if (evt.getSource() == ivaField) {
-                Fact_factura.this.ivaFieldActionPerformed(evt);
-            }
         }
 
         public void focusGained(java.awt.event.FocusEvent evt) {
@@ -396,10 +397,11 @@ public class Fact_factura extends JPanel {
             if (evt.getSource() == ivaField) {
                 Fact_factura.this.ivaFieldFocusLost(evt);
             }
+            else if (evt.getSource() == totalSinIvaField) {
+                Fact_factura.this.totalSinIvaFieldFocusLost(evt);
+            }
         }
     }// </editor-fold>//GEN-END:initComponents
-
-    
 
     @SuppressWarnings("unchecked")
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
@@ -432,7 +434,7 @@ public class Fact_factura extends JPanel {
         masterTable.setRowSelectionInterval(row, row);
         masterTable.scrollRectToVisible(masterTable.getCellRect(row, 0, true));
     }//GEN-LAST:event_newButtonActionPerformed
-    
+
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
             entityManager.getTransaction().commit();
@@ -459,19 +461,31 @@ public class Fact_factura extends JPanel {
 
     private void ivaFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ivaFieldFocusLost
         // TODO add your handling code here:
-        
-        calcularIva();
+
+
     }//GEN-LAST:event_ivaFieldFocusLost
 
-    public double calcularIva(){
-        
+    private void totalSinIvaFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_totalSinIvaFieldFocusLost
+        // TODO add your handling code here:
+        calcularIva();
+    }//GEN-LAST:event_totalSinIvaFieldFocusLost
+
+    public double calcularIva() {
+
         String sinIva = (totalSinIvaField.getText());
         double valorSinIva = Double.parseDouble(sinIva);
-        double ivaCalculado = valorSinIva*0.14;
-        return ivaCalculado;
+        double ivaCalculado = valorSinIva * 0.14;
+        double totalconIva=valorSinIva+ivaCalculado;
         
+        String res=String.valueOf(ivaCalculado) ;
+        String resTotal=String.valueOf(totalconIva);        
+        ivaField.setText(res);
+        totalConIvaField.setText(resTotal);
+        return ivaCalculado;
+       
+
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alimentacionField;
@@ -543,5 +557,5 @@ public class Fact_factura extends JPanel {
             }
         });
     }
-    
+
 }
