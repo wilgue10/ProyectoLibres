@@ -159,26 +159,26 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-//        facturaPrincipal p1 = new facturaPrincipal();
+        Fact_factura p1 = new Fact_factura();
 //
-//        p1.run();
+        p1.run();
 
-//        this.hide();
+        this.hide();
 
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-       Fact_proveedor p2 = new Fact_proveedor();
+        Fact_proveedor p2 = new Fact_proveedor();
 
-       p2.run();
+        p2.run();
 //       
 //                    this.hide();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked

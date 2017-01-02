@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.RollbackException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -43,6 +44,8 @@ public class Fact_factura extends JPanel {
         list = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(query.getResultList());
         masterScrollPane = new javax.swing.JScrollPane();
         masterTable = new javax.swing.JTable();
+        cedulaLabel = new javax.swing.JLabel();
+        rucLabel = new javax.swing.JLabel();
         fechaLabel = new javax.swing.JLabel();
         totalSinIvaLabel = new javax.swing.JLabel();
         ivaLabel = new javax.swing.JLabel();
@@ -54,6 +57,8 @@ public class Fact_factura extends JPanel {
         vestimentaLabel = new javax.swing.JLabel();
         otrosLabel = new javax.swing.JLabel();
         numeroFacturaLabel = new javax.swing.JLabel();
+        cedulaField = new javax.swing.JTextField();
+        rucField = new javax.swing.JTextField();
         fechaField = new javax.swing.JTextField();
         totalSinIvaField = new javax.swing.JTextField();
         ivaField = new javax.swing.JTextField();
@@ -69,19 +74,29 @@ public class Fact_factura extends JPanel {
         refreshButton = new javax.swing.JButton();
         newButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         FormListener formListener = new FormListener();
 
-        setName(""); // NOI18N
-
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, list, masterTable);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${numeroFactura}"));
-        columnBinding.setColumnName("Numero Factura");
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cedula}"));
+        columnBinding.setColumnName("Cedula");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${ruc}"));
+        columnBinding.setColumnName("Ruc");
         columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fecha}"));
         columnBinding.setColumnName("Fecha");
         columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${totalSinIva}"));
+        columnBinding.setColumnName("Total Sin Iva");
+        columnBinding.setColumnClass(Float.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${iva}"));
+        columnBinding.setColumnName("Iva");
+        columnBinding.setColumnClass(Float.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${totalConIva}"));
+        columnBinding.setColumnName("Total Con Iva");
+        columnBinding.setColumnClass(Float.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${vivienda}"));
         columnBinding.setColumnName("Vivienda");
         columnBinding.setColumnClass(Long.class);
@@ -100,53 +115,52 @@ public class Fact_factura extends JPanel {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${otros}"));
         columnBinding.setColumnName("Otros");
         columnBinding.setColumnClass(Long.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${iva}"));
-        columnBinding.setColumnName("Iva");
-        columnBinding.setColumnClass(Float.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${totalSinIva}"));
-        columnBinding.setColumnName("Total Sin Iva");
-        columnBinding.setColumnClass(Float.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${totalConIva}"));
-        columnBinding.setColumnName("Total Con Iva");
-        columnBinding.setColumnClass(Float.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${numeroFactura}"));
+        columnBinding.setColumnName("Numero Factura");
+        columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
 
         masterScrollPane.setViewportView(masterTable);
 
-        fechaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cedulaLabel.setText("Cedula:");
+
+        rucLabel.setText("Ruc/Proveedor:");
+
         fechaLabel.setText("Fecha:");
 
-        totalSinIvaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         totalSinIvaLabel.setText("Total Sin Iva:");
 
-        ivaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ivaLabel.setText("Iva:");
 
-        totalConIvaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         totalConIvaLabel.setText("Total Con Iva:");
 
-        viviendaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         viviendaLabel.setText("Vivienda:");
 
-        alimentacionLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         alimentacionLabel.setText("Alimentacion:");
 
-        saludLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         saludLabel.setText("Salud:");
 
-        educacionLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         educacionLabel.setText("Educacion:");
 
-        vestimentaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         vestimentaLabel.setText("Vestimenta:");
 
-        otrosLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         otrosLabel.setText("Otros:");
 
-        numeroFacturaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numeroFacturaLabel.setText("Numero Factura:");
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.fecha}"), fechaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.cedula}"), cedulaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding.setSourceUnreadableValue("null");
+        bindingGroup.addBinding(binding);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), cedulaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.ruc}"), rucField, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding.setSourceUnreadableValue("null");
+        bindingGroup.addBinding(binding);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), rucField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.fecha}"), fechaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), fechaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
@@ -159,16 +173,12 @@ public class Fact_factura extends JPanel {
         bindingGroup.addBinding(binding);
 
         totalSinIvaField.addFocusListener(formListener);
-        totalSinIvaField.addActionListener(formListener);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.iva}"), ivaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), ivaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
-
-        ivaField.addFocusListener(formListener);
-        ivaField.addActionListener(formListener);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.totalConIva}"), totalConIvaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
@@ -234,133 +244,132 @@ public class Fact_factura extends JPanel {
 
         deleteButton.addActionListener(formListener);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Ingreso Factura");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/buscar.png"))); // NOI18N
+        jButton1.addActionListener(formListener);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(newButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(refreshButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(vestimentaLabel)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fechaLabel)
-                                            .addComponent(totalSinIvaLabel)
-                                            .addComponent(ivaLabel)
-                                            .addComponent(totalConIvaLabel)
-                                            .addComponent(viviendaLabel)
-                                            .addComponent(alimentacionLabel)
-                                            .addComponent(saludLabel)
-                                            .addComponent(educacionLabel)
-                                            .addComponent(otrosLabel))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(21, 21, 21)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(alimentacionField)
-                                                    .addComponent(viviendaField)
-                                                    .addComponent(ivaField)
-                                                    .addComponent(totalSinIvaField)
-                                                    .addComponent(fechaField)
-                                                    .addComponent(saludField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(educacionField)
-                                                    .addComponent(vestimentaField)
-                                                    .addComponent(otrosField)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(99, 99, 99)
-                                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(totalConIvaField)))))
-                                .addGap(61, 61, 61)
+                                    .addComponent(cedulaLabel)
+                                    .addComponent(rucLabel)
+                                    .addComponent(fechaLabel)
+                                    .addComponent(totalSinIvaLabel)
+                                    .addComponent(ivaLabel)
+                                    .addComponent(totalConIvaLabel)
+                                    .addComponent(viviendaLabel)
+                                    .addComponent(alimentacionLabel)
+                                    .addComponent(saludLabel)
+                                    .addComponent(educacionLabel)
+                                    .addComponent(vestimentaLabel)
+                                    .addComponent(otrosLabel)
+                                    .addComponent(numeroFacturaLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(80, 80, 80)))
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(numeroFacturaLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(numeroFacturaField)
-                        .addGap(213, 213, 213))))
+                                    .addComponent(cedulaField)
+                                    .addComponent(fechaField)
+                                    .addComponent(totalSinIvaField)
+                                    .addComponent(ivaField)
+                                    .addComponent(totalConIvaField)
+                                    .addComponent(viviendaField)
+                                    .addComponent(alimentacionField)
+                                    .addComponent(saludField)
+                                    .addComponent(educacionField)
+                                    .addComponent(vestimentaField)
+                                    .addComponent(otrosField)
+                                    .addComponent(numeroFacturaField)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rucField, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 12, Short.MAX_VALUE))))
+                            .addComponent(masterScrollPane))))
+                .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteButton, newButton, refreshButton});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fechaLabel)
-                            .addComponent(fechaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalSinIvaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(totalSinIvaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ivaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ivaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalConIvaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(totalConIvaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viviendaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viviendaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(alimentacionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(alimentacionLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(saludField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(saludLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(educacionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(educacionLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(vestimentaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(vestimentaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(otrosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(otrosLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(numeroFacturaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numeroFacturaLabel)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(newButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(refreshButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
+                .addContainerGap()
+                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cedulaLabel)
+                    .addComponent(cedulaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rucLabel)
+                    .addComponent(rucField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fechaLabel)
+                    .addComponent(fechaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalSinIvaLabel)
+                    .addComponent(totalSinIvaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ivaLabel)
+                    .addComponent(ivaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalConIvaLabel)
+                    .addComponent(totalConIvaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viviendaLabel)
+                    .addComponent(viviendaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(alimentacionLabel)
+                    .addComponent(alimentacionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saludLabel)
+                    .addComponent(saludField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(educacionLabel)
+                    .addComponent(educacionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vestimentaLabel)
+                    .addComponent(vestimentaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(otrosLabel)
+                    .addComponent(otrosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroFacturaLabel)
+                    .addComponent(numeroFacturaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshButton)
+                    .addComponent(deleteButton)
+                    .addComponent(newButton))
+                .addContainerGap())
         );
-
-        getAccessibleContext().setAccessibleName("");
 
         bindingGroup.bind();
     }
@@ -370,13 +379,7 @@ public class Fact_factura extends JPanel {
     private class FormListener implements java.awt.event.ActionListener, java.awt.event.FocusListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            if (evt.getSource() == totalSinIvaField) {
-                Fact_factura.this.totalSinIvaFieldActionPerformed(evt);
-            }
-            else if (evt.getSource() == ivaField) {
-                Fact_factura.this.ivaFieldActionPerformed(evt);
-            }
-            else if (evt.getSource() == saveButton) {
+            if (evt.getSource() == saveButton) {
                 Fact_factura.this.saveButtonActionPerformed(evt);
             }
             else if (evt.getSource() == refreshButton) {
@@ -388,16 +391,16 @@ public class Fact_factura extends JPanel {
             else if (evt.getSource() == deleteButton) {
                 Fact_factura.this.deleteButtonActionPerformed(evt);
             }
+            else if (evt.getSource() == jButton1) {
+                Fact_factura.this.jButton1ActionPerformed(evt);
+            }
         }
 
         public void focusGained(java.awt.event.FocusEvent evt) {
         }
 
         public void focusLost(java.awt.event.FocusEvent evt) {
-            if (evt.getSource() == ivaField) {
-                Fact_factura.this.ivaFieldFocusLost(evt);
-            }
-            else if (evt.getSource() == totalSinIvaField) {
+            if (evt.getSource() == totalSinIvaField) {
                 Fact_factura.this.totalSinIvaFieldFocusLost(evt);
             }
         }
@@ -424,24 +427,42 @@ public class Fact_factura extends JPanel {
             entityManager.remove(f);
         }
         list.removeAll(toRemove);
+        JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
     }//GEN-LAST:event_deleteButtonActionPerformed
+    public double calcularIva() {
+
+        String sinIva = (totalSinIvaField.getText());
+        double valorSinIva = Double.parseDouble(sinIva);
+        double ivaCalculado = valorSinIva * 0.14;
+        double totalconIva = valorSinIva + ivaCalculado;
+
+        String res = String.valueOf(ivaCalculado);
+        String resTotal = String.valueOf(totalconIva);
+        ivaField.setText(res);
+        totalConIvaField.setText(resTotal);
+        return ivaCalculado;
+
+    }
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-
         presentacionxml.Factura f = new presentacionxml.Factura();
         entityManager.persist(f);
         list.add(f);
         int row = list.size() - 1;
         masterTable.setRowSelectionInterval(row, row);
         masterTable.scrollRectToVisible(masterTable.getCellRect(row, 0, true));
-         ivaField.setEnabled(false);
-         totalConIvaField.setEnabled(false);
+        cedulaField.setText("1726246828");
+        cedulaField.enable(false);
+        totalConIvaField.enable(false);
+        ivaField.enable(false);
+        rucField.enable(false);
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
             entityManager.getTransaction().commit();
             entityManager.getTransaction().begin();
+            JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
         } catch (RollbackException rex) {
             rex.printStackTrace();
             entityManager.getTransaction().begin();
@@ -453,46 +474,33 @@ public class Fact_factura extends JPanel {
             list.addAll(merged);
         }
     }//GEN-LAST:event_saveButtonActionPerformed
+    public void cargarProveedor(String r) {
 
-    private void totalSinIvaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalSinIvaFieldActionPerformed
+        System.out.println("ruc:" + r);
+       
+        rucField.setText(r);
+
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_totalSinIvaFieldActionPerformed
+        buscarProveedor p = new buscarProveedor();
 
-    private void ivaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ivaFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ivaFieldActionPerformed
-
-    private void ivaFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ivaFieldFocusLost
-        // TODO add your handling code here:
+        p.setVisible(true);
 
 
-    }//GEN-LAST:event_ivaFieldFocusLost
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void totalSinIvaFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_totalSinIvaFieldFocusLost
         // TODO add your handling code here:
         calcularIva();
     }//GEN-LAST:event_totalSinIvaFieldFocusLost
 
-    public double calcularIva() {
-
-        String sinIva = (totalSinIvaField.getText());
-        double valorSinIva = Double.parseDouble(sinIva);
-        double ivaCalculado = valorSinIva * 0.14;
-        double totalconIva=valorSinIva+ivaCalculado;
-        
-        String res=String.valueOf(ivaCalculado) ;
-        String resTotal=String.valueOf(totalconIva);        
-        ivaField.setText(res);
-        totalConIvaField.setText(resTotal);
-        return ivaCalculado;
-       
-
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alimentacionField;
     private javax.swing.JLabel alimentacionLabel;
+    private javax.swing.JTextField cedulaField;
+    private javax.swing.JLabel cedulaLabel;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField educacionField;
     private javax.swing.JLabel educacionLabel;
@@ -501,7 +509,7 @@ public class Fact_factura extends JPanel {
     private javax.swing.JLabel fechaLabel;
     private javax.swing.JTextField ivaField;
     private javax.swing.JLabel ivaLabel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
     private java.util.List<presentacionxml.Factura> list;
     private javax.swing.JScrollPane masterScrollPane;
     private javax.swing.JTable masterTable;
@@ -512,6 +520,8 @@ public class Fact_factura extends JPanel {
     private javax.swing.JLabel otrosLabel;
     private javax.persistence.Query query;
     private javax.swing.JButton refreshButton;
+    private javax.swing.JTextField rucField;
+    private javax.swing.JLabel rucLabel;
     private javax.swing.JTextField saludField;
     private javax.swing.JLabel saludLabel;
     private javax.swing.JButton saveButton;
@@ -525,40 +535,41 @@ public class Fact_factura extends JPanel {
     private javax.swing.JLabel viviendaLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-    public static void main(String[] args) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fact_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fact_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fact_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fact_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+//    public static void main(String[] args) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Fact_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Fact_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Fact_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Fact_factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        EventQueue.invokeLater(new Runnable() {
 
-        /* Create and display the form */
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JFrame frame = new JFrame();
-                frame.setContentPane(new Fact_factura());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.pack();
-                frame.setVisible(true);
-            }
-        });
+    public void run() {
+        JFrame frame = new JFrame();
+        frame.setContentPane(new Fact_factura());
+//                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
+//        });
+//    }
 
 }
