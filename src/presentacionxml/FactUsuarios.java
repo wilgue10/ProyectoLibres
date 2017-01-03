@@ -29,7 +29,7 @@ public class FactUsuarios extends JPanel {
     }
 //Variables Globales
 
-    Validaciones validar;
+    Validaciones validar=new Validaciones();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -361,7 +361,7 @@ public class FactUsuarios extends JPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 
-        if (validar.validadorDeCedula(ciField.getText())) {
+        if (validar.validadorDeCedula(ciField.getText())&&verificarContraseña()) {
             try {
                 entityManager.getTransaction().commit();
                 entityManager.getTransaction().begin();
@@ -390,10 +390,12 @@ public class FactUsuarios extends JPanel {
 
     private void ciFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ciFieldFocusLost
         // TODO add your handling code here:
+        
+            if (!validar.VerificarNumero(ciField.getText()) || ciField.getText().length() != 10) {
+                ciField.setText("");
+            }
+        
 
-        if (!validar.VerificarNumero(ciField.getText()) || ciField.getText().length() != 10) {
-            ciField.setText("");
-        }
     }//GEN-LAST:event_ciFieldFocusLost
 
     private void usernameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusLost
@@ -402,9 +404,12 @@ public class FactUsuarios extends JPanel {
 
     private void nombreFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreFieldFocusLost
         // TODO add your handling code here:
-        if (validar.VerificarNumero(nombreField.getText())) {
-            nombreField.setText("");
-        }
+       
+            if (!validar.VerificarNumero(nombreField.getText())) {
+                nombreField.setText("");
+            }
+        
+
     }//GEN-LAST:event_nombreFieldFocusLost
 
     private void apellidoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoFieldActionPerformed
@@ -413,23 +418,19 @@ public class FactUsuarios extends JPanel {
 
     private void apellidoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoFieldFocusLost
         // TODO add your handling code here:
+     
+            if (!validar.VerificarNumero(apellidoField.getText())) {
+                apellidoField.setText("");
+            }
+       
 
-        if (validar.VerificarNumero(apellidoField.getText())) {
-            apellidoField.setText("");
-        }
     }//GEN-LAST:event_apellidoFieldFocusLost
-
-    private void paswordVerificarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paswordVerificarFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_paswordVerificarFieldActionPerformed
-
-    private void paswordVerificarFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_paswordVerificarFieldFocusLost
-        // TODO add your handling code here:
+    private boolean verificarContraseña() {
         String p1 = passwordField.getText();
         String p2 = paswordVerificarField.getText();
-
+        boolean bandera = false;
         if (p1.equals(p2)) {
-            validar.password(passwordField.getText(), paswordVerificarField.getText());
+            bandera = validar.password(p1, p2);
 
         } else {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
@@ -440,6 +441,15 @@ public class FactUsuarios extends JPanel {
             paswordVerificarField.setText("");
 
         }
+        return bandera;
+    }
+    private void paswordVerificarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paswordVerificarFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paswordVerificarFieldActionPerformed
+
+    private void paswordVerificarFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_paswordVerificarFieldFocusLost
+        // TODO add your handling code here:
+
     }//GEN-LAST:event_paswordVerificarFieldFocusLost
 
 
