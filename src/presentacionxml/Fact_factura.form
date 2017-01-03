@@ -368,6 +368,9 @@
         </BindingProperty>
         <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="rucField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="rucFieldFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="fechaField">
       <BindingProperties>

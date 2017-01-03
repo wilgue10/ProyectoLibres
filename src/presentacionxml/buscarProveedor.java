@@ -31,7 +31,7 @@ public class buscarProveedor extends javax.swing.JFrame {
     public String Cod;
     private Connection connectionBaseProyectoLibres = null;
     presentacionxml.Proveedor p;
-
+public Fact_factura factura;
     public Proveedor getP() {
         return p;
     }
@@ -214,9 +214,21 @@ private void conectarAbaseProyectoLibres() {
                 }
                 Proveedor.addRow(dato);
                 JOptionPane.showMessageDialog(null, "Proveedor encontrado!");
+
                 this.tabla.setModel(Proveedor);
             } else {
                 JOptionPane.showMessageDialog(null, "Proveedor  NO encontrado!");
+                int resp = JOptionPane.showConfirmDialog(null, "¿Desea registrar nuevo proveedor?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                System.out.println("res" + resp);
+                if (resp == 0) {
+                    this.hide();
+                    Fact_proveedor p2 = new Fact_proveedor();
+                    p2.run();
+
+                    mostrardatos();
+
+                }
+
             }
 
         } catch (Exception e) {
@@ -255,6 +267,11 @@ private void conectarAbaseProyectoLibres() {
 //                    AlmacenFerreteria.direccion.setText(dir);
 //                    AlmacenFerreteria.ci.setText(ci);
 //                    AlmacenFerreteria.telefono.setText(tel);
+            
+
+            
+            
+            
             Fact_factura fact = new Fact_factura();
             fact.cargarProveedor(buscar.getText());
             this.hide();

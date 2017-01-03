@@ -14,6 +14,7 @@ import java.util.List;
 import javax.persistence.RollbackException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -27,6 +28,7 @@ public class Fact_factura extends JPanel {
             entityManager.getTransaction().begin();
         }
     }
+    public String rucProveedor = "";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,6 +168,8 @@ public class Fact_factura extends JPanel {
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), rucField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        rucField.addFocusListener(formListener);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.fecha}"), fechaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
@@ -425,6 +429,9 @@ public class Fact_factura extends JPanel {
             if (evt.getSource() == calendario) {
                 Fact_factura.this.calendarioFocusLost(evt);
             }
+            else if (evt.getSource() == rucField) {
+                Fact_factura.this.rucFieldFocusLost(evt);
+            }
         }
 
         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -535,9 +542,16 @@ public class Fact_factura extends JPanel {
 
             fechaField.setText(calendario.getDate().toString());
             System.out.println(calendario.getDate().toString());
+            rucField.setText(rucProveedor);
+            System.out.println("ruc" + rucProveedor);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_calendarioPropertyChange
+
+    private void rucFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rucFieldFocusLost
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_rucFieldFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -621,7 +635,8 @@ public class Fact_factura extends JPanel {
 
     public void cargarProveedor(String ruc) {
         System.out.println("ruc:" + ruc);
-        rucField.setText(ruc.trim());
 
+        rucProveedor = ruc;
+        System.out.println("rucProv" + rucProveedor);
     }
 }
