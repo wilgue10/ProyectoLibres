@@ -29,7 +29,7 @@ public class FactUsuarios extends JPanel {
     }
 //Variables Globales
 
-    Validaciones validar=new Validaciones();
+    Validaciones validar = new Validaciones();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -361,7 +361,7 @@ public class FactUsuarios extends JPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 
-        if (validar.validadorDeCedula(ciField.getText())&&verificarContraseña()) {
+        if (validar.validadorDeCedula(ciField.getText()) && verificarContraseña()) {
             try {
                 entityManager.getTransaction().commit();
                 entityManager.getTransaction().begin();
@@ -390,11 +390,11 @@ public class FactUsuarios extends JPanel {
 
     private void ciFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ciFieldFocusLost
         // TODO add your handling code here:
-        
-            if (!validar.VerificarNumero(ciField.getText()) || ciField.getText().length() != 10) {
-                ciField.setText("");
-            }
-        
+
+        if (!validar.VerificarNumero(ciField.getText()) || ciField.getText().length() != 10) {
+            ciField.setText("");
+        }
+
 
     }//GEN-LAST:event_ciFieldFocusLost
 
@@ -404,11 +404,11 @@ public class FactUsuarios extends JPanel {
 
     private void nombreFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreFieldFocusLost
         // TODO add your handling code here:
-       
-            if (!validar.VerificarNumero(nombreField.getText())) {
-                nombreField.setText("");
-            }
-        
+
+        if (!validar.VerificarNumero(nombreField.getText())) {
+            nombreField.setText("");
+        }
+
 
     }//GEN-LAST:event_nombreFieldFocusLost
 
@@ -418,11 +418,11 @@ public class FactUsuarios extends JPanel {
 
     private void apellidoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoFieldFocusLost
         // TODO add your handling code here:
-     
-            if (!validar.VerificarNumero(apellidoField.getText())) {
-                apellidoField.setText("");
-            }
-       
+
+        if (!validar.VerificarNumero(apellidoField.getText())) {
+            apellidoField.setText("");
+        }
+
 
     }//GEN-LAST:event_apellidoFieldFocusLost
     private boolean verificarContraseña() {
@@ -478,40 +478,39 @@ public class FactUsuarios extends JPanel {
     private javax.swing.JLabel usernameLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-    public static void main(String[] args) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FactUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FactUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FactUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FactUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+//    public static void main(String[] args) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(FactUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(FactUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(FactUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(FactUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        EventQueue.invokeLater(new Runnable() {
 
-        /* Create and display the form */
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JFrame frame = new JFrame();
-                frame.setContentPane(new FactUsuarios());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.pack();
-                frame.setVisible(true);
-            }
-        });
+    public void run() {
+        JFrame frame = new JFrame();
+        frame.setContentPane(new FactUsuarios());
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
-
+//        });
 }
