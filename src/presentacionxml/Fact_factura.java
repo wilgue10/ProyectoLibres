@@ -7,8 +7,10 @@ package presentacionxml;
 
 import java.awt.EventQueue;
 import java.beans.Beans;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import java.util.List;
 import javax.persistence.RollbackException;
@@ -21,14 +23,34 @@ import javax.swing.JTextField;
  * @author Wilmer
  */
 public class Fact_factura extends JPanel {
-
+    
     public Fact_factura() {
         initComponents();
         if (!Beans.isDesignTime()) {
             entityManager.getTransaction().begin();
         }
     }
-    public String rucProveedor = "";
+    public Factura factura;
+    
+    public Factura getFactura() {
+        return factura;
+    }
+    
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+    public String rucProveedor = "busque un proveedor";
+    
+    public String getRucProveedor() {
+        return rucProveedor;
+    }
+    
+    public void setRucProveedor(String rucProveedor) {
+        this.rucProveedor = rucProveedor;
+    }
+    Date hoy = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    String fecha = sdf.format(hoy);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -170,6 +192,7 @@ public class Fact_factura extends JPanel {
         bindingGroup.addBinding(binding);
 
         rucField.addFocusListener(formListener);
+        rucField.addActionListener(formListener);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.fecha}"), fechaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
@@ -236,6 +259,8 @@ public class Fact_factura extends JPanel {
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), numeroFacturaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        numeroFacturaField.addKeyListener(formListener);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), codigoField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
@@ -402,7 +427,7 @@ public class Fact_factura extends JPanel {
 
     // Code for dispatching events from components to event handlers.
 
-    private class FormListener implements java.awt.event.ActionListener, java.awt.event.FocusListener, java.awt.event.MouseListener, java.beans.PropertyChangeListener {
+    private class FormListener implements java.awt.event.ActionListener, java.awt.event.FocusListener, java.awt.event.KeyListener, java.awt.event.MouseListener, java.beans.PropertyChangeListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             if (evt.getSource() == saveButton) {
@@ -420,17 +445,32 @@ public class Fact_factura extends JPanel {
             else if (evt.getSource() == jButton1) {
                 Fact_factura.this.jButton1ActionPerformed(evt);
             }
+            else if (evt.getSource() == rucField) {
+                Fact_factura.this.rucFieldActionPerformed(evt);
+            }
         }
 
         public void focusGained(java.awt.event.FocusEvent evt) {
         }
 
         public void focusLost(java.awt.event.FocusEvent evt) {
-            if (evt.getSource() == calendario) {
+            if (evt.getSource() == rucField) {
+                Fact_factura.this.rucFieldFocusLost(evt);
+            }
+            else if (evt.getSource() == calendario) {
                 Fact_factura.this.calendarioFocusLost(evt);
             }
-            else if (evt.getSource() == rucField) {
-                Fact_factura.this.rucFieldFocusLost(evt);
+        }
+
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+        }
+
+        public void keyReleased(java.awt.event.KeyEvent evt) {
+        }
+
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            if (evt.getSource() == numeroFacturaField) {
+                Fact_factura.this.numeroFacturaFieldKeyTyped(evt);
             }
         }
 
@@ -492,6 +532,7 @@ public class Fact_factura extends JPanel {
         int row = list.size() - 1;
         masterTable.setRowSelectionInterval(row, row);
         masterTable.scrollRectToVisible(masterTable.getCellRect(row, 0, true));
+        fechaField.setText(fecha.toString());
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -514,6 +555,8 @@ public class Fact_factura extends JPanel {
         // TODO add your handling code here:
         buscarProveedor p = new buscarProveedor();
         p.setVisible(true);
+        rucProveedor = p.Cod;
+        System.out.println("buRuc" + rucProveedor);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void calendarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_calendarioFocusLost
@@ -539,11 +582,13 @@ public class Fact_factura extends JPanel {
     private void calendarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_calendarioPropertyChange
         // TODO add your handling code here:
         try {
-
+            
             fechaField.setText(calendario.getDate().toString());
             System.out.println(calendario.getDate().toString());
             rucField.setText(rucProveedor);
             System.out.println("ruc" + rucProveedor);
+            buscarProveedor p = new buscarProveedor();
+            System.out.println("rucBus" + p.Cod.trim());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_calendarioPropertyChange
@@ -552,6 +597,25 @@ public class Fact_factura extends JPanel {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_rucFieldFocusLost
+
+    private void rucFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rucFieldActionPerformed
+        // TODO add your handling code here:
+        rucField.setText(rucProveedor);
+    }//GEN-LAST:event_rucFieldActionPerformed
+
+    private void numeroFacturaFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroFacturaFieldKeyTyped
+        // TODO add your handling code here:
+        if (numeroFacturaField.getText().length() == 3 || numeroFacturaField.getText().length() == 7) {
+            if (evt.getKeyChar() != '-') {
+                evt.setKeyChar('-');
+            }
+        }
+        if (numeroFacturaField.getText().length() == 18) {
+            numeroFacturaField.setText("");
+        }
+        
+
+    }//GEN-LAST:event_numeroFacturaFieldKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -629,14 +693,18 @@ public class Fact_factura extends JPanel {
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        
     }
 //        });
 //    }
 
     public void cargarProveedor(String ruc) {
         System.out.println("ruc:" + ruc);
-
+        
         rucProveedor = ruc;
+        
+        rucField.setText(rucProveedor);
         System.out.println("rucProv" + rucProveedor);
+        
     }
 }
