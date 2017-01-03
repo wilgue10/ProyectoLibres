@@ -109,10 +109,11 @@ public class Validaciones {
         }
     }
 
-    public void password(String pas1,  String pas2) {
+    public boolean password(String pas1, String pas2) {
 //        String pas1 = "", pas2 = "";
 //        pas1 = password_1.getText().trim();
 //        pas2 = password_2.getText();
+        boolean bandera = false;
         if (pas1.matches("[A-Za-z][0-9]{10}")) {
             char clave;
             byte contLetra = 0, conNumero = 0;
@@ -129,6 +130,7 @@ public class Validaciones {
             }
             if (contLetra == conNumero) {
                 JOptionPane.showMessageDialog(null, "Tu contraseña tiene un nivel alto de complejidiad");
+                bandera=true;
             } else if (conNumero == 0) {
                 JOptionPane.showConfirmDialog(null, "Para tener una contraseña mas confiable por favor introduce un numero como mínimo.");
             } else if (conNumero == 2 && contLetra <= 3) {
@@ -137,6 +139,7 @@ public class Validaciones {
         } else {
             JOptionPane.showMessageDialog(null, "La contraseña no puede tener caracteres especiales como %-&-$.");
         }
+        return bandera;
     }
 
 }
