@@ -8,7 +8,6 @@ package presentacionxml;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 /**
@@ -55,8 +52,7 @@ public class Factura implements Serializable {
     @Column(name = "RUC")
     private String ruc;
     @Column(name = "FECHA")
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private String fecha;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TOTAL_SIN_IVA")
     private Float totalSinIva;
@@ -122,12 +118,12 @@ public class Factura implements Serializable {
         changeSupport.firePropertyChange("ruc", oldRuc, ruc);
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
-        Date oldFecha = this.fecha;
+    public void setFecha(String fecha) {
+        String oldFecha = this.fecha;
         this.fecha = fecha;
         changeSupport.firePropertyChange("fecha", oldFecha, fecha);
     }

@@ -56,6 +56,11 @@ public class Fact_LoginForm extends javax.swing.JFrame {
                 usernameActionPerformed(evt);
             }
         });
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameKeyPressed(evt);
+            }
+        });
 
         jButton1.setText("Entrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +72,11 @@ public class Fact_LoginForm extends javax.swing.JFrame {
         jButton2.setText("registrar");
 
         jButton3.setText("salir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/perfil.png"))); // NOI18N
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -167,6 +177,15 @@ public class Fact_LoginForm extends javax.swing.JFrame {
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameKeyPressed
 
     /**
      * @param args the command line arguments

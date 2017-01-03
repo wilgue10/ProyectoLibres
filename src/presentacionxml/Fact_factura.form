@@ -53,87 +53,94 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="newButton" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="deleteButton" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="refreshButton" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="saveButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cedulaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rucLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fechaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="totalSinIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ivaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="totalConIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="viviendaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alimentacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="saludLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="educacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="vestimentaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="otrosLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="numeroFacturaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cedulaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="rucLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="fechaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalSinIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ivaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalConIvaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="viviendaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="alimentacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="saludLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="educacionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="vestimentaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="otrosLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="numeroFacturaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="codigoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cedulaField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="totalSinIvaField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ivaField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="totalConIvaField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="viviendaField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="alimentacionField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="saludField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="educacionField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="vestimentaField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="otrosField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="numeroFacturaField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="codigoField" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="fechaField" alignment="0" pref="532" max="32767" attributes="0"/>
+                                  <Component id="rucField" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cedulaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fechaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="totalSinIvaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ivaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="totalConIvaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="viviendaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="alimentacionField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="saludField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="educacionField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="vestimentaField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="otrosField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="numeroFacturaField" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="rucField" min="-2" pref="650" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton1" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="jButton1" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="calendario" min="-2" pref="24" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Component id="masterScrollPane" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="masterScrollPane" pref="721" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="newButton" min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="deleteButton" min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="refreshButton" min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="saveButton" min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="masterScrollPane" pref="127" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="masterScrollPane" pref="66" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cedulaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cedulaField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="rucLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rucField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="fechaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fechaField" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="fechaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fechaField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="calendario" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="totalSinIvaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="totalSinIvaField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -183,14 +190,19 @@
                   <Component id="numeroFacturaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="numeroFacturaField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="1"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="saveButton" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="refreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="newButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="codigoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="codigoField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" max="-2" attributes="1"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="saveButton" pref="0" max="32767" attributes="0"/>
+                  <Component id="deleteButton" max="32767" attributes="0"/>
+                  <Component id="newButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="refreshButton" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -216,7 +228,7 @@
               </Subbinding>
               <Subbinding sourcePath="${fecha}">
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN" value="2"/>
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
               </Subbinding>
               <Subbinding sourcePath="${totalSinIva}">
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN" value="3"/>
@@ -258,6 +270,10 @@
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN" value="12"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
               </Subbinding>
+              <Subbinding sourcePath="${codigo}">
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN" value="13"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+              </Subbinding>
             </BindingProperty>
           </BindingProperties>
           <AuxValues>
@@ -274,7 +290,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="rucLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ruc/Proveedor:"/>
+        <Property name="text" type="java.lang.String" value="Ruc:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="fechaLabel">
@@ -332,6 +348,11 @@
         <Property name="text" type="java.lang.String" value="Numero Factura:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="codigoLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Codigo:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JTextField" name="cedulaField">
       <BindingProperties>
         <BindingProperty name="text" source="masterTable" sourcePath="${selectedElement.cedula}" target="cedulaField" targetPath="text" updateStrategy="0" immediately="false">
@@ -363,9 +384,6 @@
         </BindingProperty>
         <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="totalSinIvaField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
-      <Events>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="totalSinIvaFieldFocusLost"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="ivaField">
       <BindingProperties>
@@ -439,6 +457,14 @@
         <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="numeroFacturaField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
     </Component>
+    <Component class="javax.swing.JTextField" name="codigoField">
+      <BindingProperties>
+        <BindingProperty name="text" source="masterTable" sourcePath="${selectedElement.codigo}" target="codigoField" targetPath="text" updateStrategy="0" immediately="false">
+          <Property name="incompletePathValue" type="java.lang.String" value="null"/>
+        </BindingProperty>
+        <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="codigoField" targetPath="enabled" updateStrategy="1" immediately="false"/>
+      </BindingProperties>
+    </Component>
     <Component class="javax.swing.JButton" name="saveButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -500,12 +526,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/buscar.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="calendario">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="calendarioFocusLost"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="calendarioMouseClicked"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="calendarioMousePressed"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="calendarioPropertyChange"/>
       </Events>
     </Component>
   </SubComponents>
