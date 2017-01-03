@@ -6,6 +6,8 @@
 package presentacionxml;
 
 import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -104,6 +106,36 @@ public class Validaciones {
         } catch (Exception error) {
             return false;
             //throw;
+        }
+    }
+
+    private void password(JTextField password_1, JTextField password_2) {
+        String pas1 = "", pas2 = "";
+        pas1 = password_1.getText().trim();
+        pas2 = password_2.getText();
+        if (pas1.matches("[A-Za-z][0-9]{10}")) {
+            char clave;
+            byte contLetra = 0, conNumero = 0;
+            for (byte i = 0; i <= pas1.length(); i++) {
+                clave = pas1.charAt(i);
+                pas2 = String.valueOf(clave);
+                if (pas2.matches("[a-zA-Z]")) {
+                    contLetra++;
+                    System.out.println(contLetra);
+                } else if (pas2.matches("[0-9]")) {
+                    conNumero++;
+                    System.out.println(conNumero);
+                }
+            }
+            if (contLetra == conNumero) {
+                JOptionPane.showMessageDialog(null, "Tu contraseña tiene un nivel alto de complejidiad");
+            } else if (conNumero == 0) {
+                JOptionPane.showConfirmDialog(null, "Para tener una contraseña mas confiable por favor introduce un numero como mínimo.");
+            } else if (conNumero == 2 && contLetra <= 3) {
+                JOptionPane.showMessageDialog(null, "la contraseña necesita mas de 7 digitos entre numeros y letras");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La contraseña no puede tener caracteres especiales como %-&-$.");
         }
     }
 
