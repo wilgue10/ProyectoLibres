@@ -14,6 +14,7 @@ import javax.persistence.RollbackException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -140,6 +141,7 @@ public class FactUsuarios extends JPanel {
         bindingGroup.addBinding(binding);
 
         nombreField.addFocusListener(formListener);
+        nombreField.addActionListener(formListener);
 
         apellidoField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -172,8 +174,10 @@ public class FactUsuarios extends JPanel {
         jLabel1.setText("Registro de Usuarios");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel2.setText("verificar password");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Verificar Password");
 
+        paswordVerificarField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         paswordVerificarField.setName("paswordVerificarField"); // NOI18N
         paswordVerificarField.addFocusListener(formListener);
         paswordVerificarField.addActionListener(formListener);
@@ -239,13 +243,13 @@ public class FactUsuarios extends JPanel {
                             .addComponent(passwordLabel)
                             .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(paswordVerificarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombreLabel)
-                            .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(paswordVerificarField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(apellidoLabel)
@@ -258,8 +262,8 @@ public class FactUsuarios extends JPanel {
                         .addComponent(refreshButton)))
                 .addGap(18, 18, 18)
                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -290,6 +294,9 @@ public class FactUsuarios extends JPanel {
             }
             else if (evt.getSource() == paswordVerificarField) {
                 FactUsuarios.this.paswordVerificarFieldActionPerformed(evt);
+            }
+            else if (evt.getSource() == nombreField) {
+                FactUsuarios.this.nombreFieldActionPerformed(evt);
             }
         }
 
@@ -452,6 +459,10 @@ public class FactUsuarios extends JPanel {
 
     }//GEN-LAST:event_paswordVerificarFieldFocusLost
 
+    private void nombreFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoField;
@@ -508,6 +519,7 @@ public class FactUsuarios extends JPanel {
     public void run() {
         JFrame frame = new JFrame();
         frame.setContentPane(new FactUsuarios());
+        
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
