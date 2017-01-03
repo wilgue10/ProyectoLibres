@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.RollbackException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,7 +24,7 @@ import javax.swing.JTextField;
  * @author Wilmer
  */
 public class Fact_factura extends JPanel {
-    
+
     public Fact_factura() {
         initComponents();
         if (!Beans.isDesignTime()) {
@@ -31,20 +32,20 @@ public class Fact_factura extends JPanel {
         }
     }
     public Factura factura;
-    
+
     public Factura getFactura() {
         return factura;
     }
-    
+
     public void setFactura(Factura factura) {
         this.factura = factura;
     }
     public String rucProveedor = "busque un proveedor";
-    
+
     public String getRucProveedor() {
         return rucProveedor;
     }
-    
+
     public void setRucProveedor(String rucProveedor) {
         this.rucProveedor = rucProveedor;
     }
@@ -101,6 +102,8 @@ public class Fact_factura extends JPanel {
         deleteButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         calendario = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
 
         FormListener formListener = new FormListener();
 
@@ -284,12 +287,18 @@ public class Fact_factura extends JPanel {
 
         deleteButton.addActionListener(formListener);
 
-        jButton1.setText("Buscar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Lupa_icon.png"))); // NOI18N
         jButton1.addActionListener(formListener);
 
         calendario.addFocusListener(formListener);
         calendario.addMouseListener(formListener);
         calendario.addPropertyChangeListener(formListener);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Registro Factura");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione tipo gasto", "Vivienda", "Alimentacion", "Salud", "Educacion", "Vestimenta", "Otros" }));
+        jComboBox1.addActionListener(formListener);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -316,54 +325,68 @@ public class Fact_factura extends JPanel {
                             .addComponent(codigoLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cedulaField)
-                            .addComponent(totalSinIvaField)
-                            .addComponent(ivaField)
-                            .addComponent(totalConIvaField)
-                            .addComponent(viviendaField)
-                            .addComponent(alimentacionField)
-                            .addComponent(saludField)
-                            .addComponent(educacionField)
-                            .addComponent(vestimentaField)
-                            .addComponent(otrosField)
-                            .addComponent(numeroFacturaField)
-                            .addComponent(codigoField)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cedulaField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(codigoField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(numeroFacturaField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(otrosField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(vestimentaField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(educacionField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(saludField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(alimentacionField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(viviendaField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totalConIvaField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ivaField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totalSinIvaField, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(fechaField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                                     .addComponent(rucField, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))
-                    .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8)))
+                                .addGap(63, 63, 63))))
+                    .addComponent(masterScrollPane)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(155, 155, 155))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(248, 248, 248))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cedulaLabel)
                     .addComponent(cedulaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rucLabel)
-                    .addComponent(rucField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rucLabel)
+                        .addComponent(rucField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(fechaLabel)
@@ -381,7 +404,9 @@ public class Fact_factura extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalConIvaLabel)
                     .addComponent(totalConIvaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viviendaLabel)
                     .addComponent(viviendaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -415,10 +440,10 @@ public class Fact_factura extends JPanel {
                     .addComponent(codigoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton)
+                    .addComponent(newButton)
+                    .addComponent(refreshButton))
                 .addContainerGap())
         );
 
@@ -447,6 +472,9 @@ public class Fact_factura extends JPanel {
             }
             else if (evt.getSource() == rucField) {
                 Fact_factura.this.rucFieldActionPerformed(evt);
+            }
+            else if (evt.getSource() == jComboBox1) {
+                Fact_factura.this.jComboBox1ActionPerformed(evt);
             }
         }
 
@@ -533,6 +561,14 @@ public class Fact_factura extends JPanel {
         masterTable.setRowSelectionInterval(row, row);
         masterTable.scrollRectToVisible(masterTable.getCellRect(row, 0, true));
         fechaField.setText(fecha.toString());
+        //tipos de gastos bloqueados
+        viviendaField.setEnabled(false);
+        educacionField.setEnabled(false);
+        alimentacionField.setEnabled(false);
+        saludField.setEnabled(false);
+        vestimentaField.setEnabled(false);
+        otrosField.setEnabled(false);
+
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -582,13 +618,8 @@ public class Fact_factura extends JPanel {
     private void calendarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_calendarioPropertyChange
         // TODO add your handling code here:
         try {
-            
-            fechaField.setText(calendario.getDate().toString());
-            System.out.println(calendario.getDate().toString());
-            rucField.setText(rucProveedor);
-            System.out.println("ruc" + rucProveedor);
-            buscarProveedor p = new buscarProveedor();
-            System.out.println("rucBus" + p.Cod.trim());
+            fechaField.setText(sdf.format(calendario.getDate()));
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_calendarioPropertyChange
@@ -613,9 +644,45 @@ public class Fact_factura extends JPanel {
         if (numeroFacturaField.getText().length() == 18) {
             numeroFacturaField.setText("");
         }
-        
+
 
     }//GEN-LAST:event_numeroFacturaFieldKeyTyped
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+
+        if (jComboBox1.getSelectedIndex() == 1) {
+            String respuesta = JOptionPane.showInputDialog("Escriba valor total de vivienda");
+            viviendaField.setText(respuesta);
+//            viviendaField.setEnabled(true);
+        }
+        if (jComboBox1.getSelectedIndex() == 2) {
+            String respuesta = JOptionPane.showInputDialog("Escriba valor total de alimentacion");
+            alimentacionField.setText(respuesta);
+//            alimentacionField.setEnabled(true);
+        }
+        if (jComboBox1.getSelectedIndex() == 3) {
+            String respuesta = JOptionPane.showInputDialog("Escriba valor total de salud");
+            saludField.setText(respuesta);
+//            saludField.setEnabled(true);
+        }
+        if (jComboBox1.getSelectedIndex() == 4) {
+            String respuesta = JOptionPane.showInputDialog("Escriba valor total de educacion");
+            educacionField.setText(respuesta);
+//            educacionField.setEnabled(true);
+        }
+        if (jComboBox1.getSelectedIndex() == 5) {
+            String respuesta = JOptionPane.showInputDialog("Escriba valor total de vestimenta");
+            vestimentaField.setText(respuesta);
+            
+//            vestimentaField.setEnabled(true);
+        }
+        if (jComboBox1.getSelectedIndex() == 6) {
+            String respuesta = JOptionPane.showInputDialog("Escriba valor total de otros");
+            otrosField.setText(respuesta);
+//            otrosField.setEnabled(true);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -635,6 +702,8 @@ public class Fact_factura extends JPanel {
     private javax.swing.JTextField ivaField;
     private javax.swing.JLabel ivaLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private java.util.List<presentacionxml.Factura> list;
     private javax.swing.JScrollPane masterScrollPane;
     private javax.swing.JTable masterTable;
@@ -693,18 +762,25 @@ public class Fact_factura extends JPanel {
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        
+
+        jComboBox1.addItem("Vivienda");
+        jComboBox1.addItem("Alimentacion");
+        jComboBox1.addItem("Salud");
+        jComboBox1.addItem("Educacion");
+        jComboBox1.addItem("Vestimenta");
+        jComboBox1.addItem("otros");
+
     }
 //        });
 //    }
 
     public void cargarProveedor(String ruc) {
         System.out.println("ruc:" + ruc);
-        
+
         rucProveedor = ruc;
-        
+
         rucField.setText(rucProveedor);
         System.out.println("rucProv" + rucProveedor);
-        
+
     }
 }

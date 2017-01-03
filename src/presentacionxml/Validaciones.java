@@ -109,10 +109,10 @@ public class Validaciones {
         }
     }
 
-    private void password(JTextField password_1, JTextField password_2) {
-        String pas1 = "", pas2 = "";
-        pas1 = password_1.getText().trim();
-        pas2 = password_2.getText();
+    public void password(String pas1,  String pas2) {
+//        String pas1 = "", pas2 = "";
+//        pas1 = password_1.getText().trim();
+//        pas2 = password_2.getText();
         if (pas1.matches("[A-Za-z][0-9]{10}")) {
             char clave;
             byte contLetra = 0, conNumero = 0;

@@ -31,7 +31,8 @@ public class buscarProveedor extends javax.swing.JFrame {
     public String Cod;
     private Connection connectionBaseProyectoLibres = null;
     presentacionxml.Proveedor p;
-public Fact_factura factura;
+    public Fact_factura factura;
+
     public Proveedor getP() {
         return p;
     }
@@ -267,13 +268,13 @@ private void conectarAbaseProyectoLibres() {
 //                    AlmacenFerreteria.direccion.setText(dir);
 //                    AlmacenFerreteria.ci.setText(ci);
 //                    AlmacenFerreteria.telefono.setText(tel);
-            
-
-            
-            
-            
             Fact_factura fact = new Fact_factura();
+
             fact.cargarProveedor(buscar.getText());
+////            fact.setRucProveedor(cod);
+          
+          
+          
             this.hide();
 
         } catch (Exception e) {

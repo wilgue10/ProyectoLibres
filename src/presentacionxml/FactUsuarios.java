@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.RollbackException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -60,6 +61,8 @@ public class FactUsuarios extends JPanel {
         newButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        paswordVerificarField = new javax.swing.JTextField();
 
         FormListener formListener = new FormListener();
 
@@ -169,6 +172,12 @@ public class FactUsuarios extends JPanel {
         jLabel1.setText("Registro de Usuarios");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jLabel2.setText("verificar password");
+
+        paswordVerificarField.setName("paswordVerificarField"); // NOI18N
+        paswordVerificarField.addFocusListener(formListener);
+        paswordVerificarField.addActionListener(formListener);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,8 +206,13 @@ public class FactUsuarios extends JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(paswordVerificarField)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39))
             .addGroup(layout.createSequentialGroup()
                 .addGap(219, 219, 219)
@@ -224,7 +238,11 @@ public class FactUsuarios extends JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(passwordLabel)
                             .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(paswordVerificarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nombreLabel)
                             .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -241,7 +259,7 @@ public class FactUsuarios extends JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -255,6 +273,9 @@ public class FactUsuarios extends JPanel {
             if (evt.getSource() == ciField) {
                 FactUsuarios.this.ciFieldActionPerformed(evt);
             }
+            else if (evt.getSource() == apellidoField) {
+                FactUsuarios.this.apellidoFieldActionPerformed(evt);
+            }
             else if (evt.getSource() == saveButton) {
                 FactUsuarios.this.saveButtonActionPerformed(evt);
             }
@@ -267,8 +288,8 @@ public class FactUsuarios extends JPanel {
             else if (evt.getSource() == deleteButton) {
                 FactUsuarios.this.deleteButtonActionPerformed(evt);
             }
-            else if (evt.getSource() == apellidoField) {
-                FactUsuarios.this.apellidoFieldActionPerformed(evt);
+            else if (evt.getSource() == paswordVerificarField) {
+                FactUsuarios.this.paswordVerificarFieldActionPerformed(evt);
             }
         }
 
@@ -287,6 +308,9 @@ public class FactUsuarios extends JPanel {
             }
             else if (evt.getSource() == apellidoField) {
                 FactUsuarios.this.apellidoFieldFocusLost(evt);
+            }
+            else if (evt.getSource() == paswordVerificarField) {
+                FactUsuarios.this.paswordVerificarFieldFocusLost(evt);
             }
         }
 
@@ -395,6 +419,29 @@ public class FactUsuarios extends JPanel {
         }
     }//GEN-LAST:event_apellidoFieldFocusLost
 
+    private void paswordVerificarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paswordVerificarFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paswordVerificarFieldActionPerformed
+
+    private void paswordVerificarFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_paswordVerificarFieldFocusLost
+        // TODO add your handling code here:
+        String p1 = passwordField.getText();
+        String p2 = paswordVerificarField.getText();
+
+        if (p1.equals(p2)) {
+            validar.password(passwordField.getText(), paswordVerificarField.getText());
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+            System.out.println("p1" + passwordField.getText());
+            System.out.println("p1" + paswordVerificarField.getText());
+
+            passwordField.setText("");
+            paswordVerificarField.setText("");
+
+        }
+    }//GEN-LAST:event_paswordVerificarFieldFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoField;
@@ -404,6 +451,7 @@ public class FactUsuarios extends JPanel {
     private javax.swing.JButton deleteButton;
     private javax.persistence.EntityManager entityManager;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private java.util.List<presentacionxml.User> list;
     private javax.swing.JScrollPane masterScrollPane;
     private javax.swing.JTable masterTable;
@@ -412,6 +460,7 @@ public class FactUsuarios extends JPanel {
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField paswordVerificarField;
     private javax.persistence.Query query;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton saveButton;
