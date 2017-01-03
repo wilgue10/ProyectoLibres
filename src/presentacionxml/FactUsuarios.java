@@ -19,13 +19,16 @@ import javax.swing.JPanel;
  * @author Wilmer
  */
 public class FactUsuarios extends JPanel {
-    
+
     public FactUsuarios() {
         initComponents();
         if (!Beans.isDesignTime()) {
             entityManager.getTransaction().begin();
         }
     }
+//Variables Globales
+
+    Validaciones validar;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,7 +106,9 @@ public class FactUsuarios extends JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), ciField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
+        ciField.addFocusListener(formListener);
         ciField.addActionListener(formListener);
+        ciField.addKeyListener(formListener);
 
         usernameField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -112,6 +117,8 @@ public class FactUsuarios extends JPanel {
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), usernameField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        usernameField.addFocusListener(formListener);
 
         passwordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -129,6 +136,8 @@ public class FactUsuarios extends JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), nombreField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
+        nombreField.addFocusListener(formListener);
+
         apellidoField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.apellido}"), apellidoField, org.jdesktop.beansbinding.BeanProperty.create("text"));
@@ -136,6 +145,9 @@ public class FactUsuarios extends JPanel {
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), apellidoField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        apellidoField.addFocusListener(formListener);
+        apellidoField.addActionListener(formListener);
 
         saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save.png"))); // NOI18N
         saveButton.addActionListener(formListener);
@@ -203,7 +215,7 @@ public class FactUsuarios extends JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ciLabel)
-                            .addComponent(ciField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ciField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(usernameLabel)
@@ -237,10 +249,13 @@ public class FactUsuarios extends JPanel {
 
     // Code for dispatching events from components to event handlers.
 
-    private class FormListener implements java.awt.event.ActionListener {
+    private class FormListener implements java.awt.event.ActionListener, java.awt.event.FocusListener, java.awt.event.KeyListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            if (evt.getSource() == saveButton) {
+            if (evt.getSource() == ciField) {
+                FactUsuarios.this.ciFieldActionPerformed(evt);
+            }
+            else if (evt.getSource() == saveButton) {
                 FactUsuarios.this.saveButtonActionPerformed(evt);
             }
             else if (evt.getSource() == refreshButton) {
@@ -252,13 +267,41 @@ public class FactUsuarios extends JPanel {
             else if (evt.getSource() == deleteButton) {
                 FactUsuarios.this.deleteButtonActionPerformed(evt);
             }
-            else if (evt.getSource() == ciField) {
-                FactUsuarios.this.ciFieldActionPerformed(evt);
+            else if (evt.getSource() == apellidoField) {
+                FactUsuarios.this.apellidoFieldActionPerformed(evt);
             }
         }
-    }// </editor-fold>//GEN-END:initComponents
 
-    
+        public void focusGained(java.awt.event.FocusEvent evt) {
+        }
+
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (evt.getSource() == ciField) {
+                FactUsuarios.this.ciFieldFocusLost(evt);
+            }
+            else if (evt.getSource() == usernameField) {
+                FactUsuarios.this.usernameFieldFocusLost(evt);
+            }
+            else if (evt.getSource() == nombreField) {
+                FactUsuarios.this.nombreFieldFocusLost(evt);
+            }
+            else if (evt.getSource() == apellidoField) {
+                FactUsuarios.this.apellidoFieldFocusLost(evt);
+            }
+        }
+
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            if (evt.getSource() == ciField) {
+                FactUsuarios.this.ciFieldKeyPressed(evt);
+            }
+        }
+
+        public void keyReleased(java.awt.event.KeyEvent evt) {
+        }
+
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+        }
+    }// </editor-fold>//GEN-END:initComponents
 
     @SuppressWarnings("unchecked")
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
@@ -291,30 +334,66 @@ public class FactUsuarios extends JPanel {
         masterTable.setRowSelectionInterval(row, row);
         masterTable.scrollRectToVisible(masterTable.getCellRect(row, 0, true));
     }//GEN-LAST:event_newButtonActionPerformed
-    
+
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        try {
-            entityManager.getTransaction().commit();
-            entityManager.getTransaction().begin();
-        } catch (RollbackException rex) {
-            rex.printStackTrace();
-            entityManager.getTransaction().begin();
-            List<presentacionxml.User> merged = new ArrayList<presentacionxml.User>(list.size());
-            for (presentacionxml.User u : list) {
-                merged.add(entityManager.merge(u));
+
+        if (validar.validadorDeCedula(ciField.getText())) {
+            try {
+                entityManager.getTransaction().commit();
+                entityManager.getTransaction().begin();
+            } catch (RollbackException rex) {
+                rex.printStackTrace();
+                entityManager.getTransaction().begin();
+                List<presentacionxml.User> merged = new ArrayList<presentacionxml.User>(list.size());
+                for (presentacionxml.User u : list) {
+                    merged.add(entityManager.merge(u));
+                }
+                list.clear();
+                list.addAll(merged);
             }
-            list.clear();
-            list.addAll(merged);
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void ciFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciFieldActionPerformed
         // TODO add your handling code here:
-        
-        Validaciones validar = new Validaciones();
-        
-       validar.validadorDeCedula(TOOL_TIP_TEXT_KEY);
     }//GEN-LAST:event_ciFieldActionPerformed
+
+    private void ciFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ciFieldKeyPressed
+
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_ciFieldKeyPressed
+
+    private void ciFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ciFieldFocusLost
+        // TODO add your handling code here:
+
+        if (!validar.VerificarNumero(ciField.getText()) || ciField.getText().length() != 10) {
+            ciField.setText("");
+        }
+    }//GEN-LAST:event_ciFieldFocusLost
+
+    private void usernameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameFieldFocusLost
+
+    private void nombreFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreFieldFocusLost
+        // TODO add your handling code here:
+        if (validar.VerificarNumero(nombreField.getText())) {
+            nombreField.setText("");
+        }
+    }//GEN-LAST:event_nombreFieldFocusLost
+
+    private void apellidoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_apellidoFieldActionPerformed
+
+    private void apellidoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoFieldFocusLost
+        // TODO add your handling code here:
+
+        if (validar.VerificarNumero(apellidoField.getText())) {
+            apellidoField.setText("");
+        }
+    }//GEN-LAST:event_apellidoFieldFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -375,5 +454,5 @@ public class FactUsuarios extends JPanel {
             }
         });
     }
-    
+
 }
