@@ -104,6 +104,7 @@ public class Fact_factura extends JPanel {
         calendario = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
 
         FormListener formListener = new FormListener();
 
@@ -300,6 +301,9 @@ public class Fact_factura extends JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione tipo gasto", "Vivienda", "Alimentacion", "Salud", "Educacion", "Vestimenta", "Otros" }));
         jComboBox1.addActionListener(formListener);
 
+        jButton2.setText("Resumen Gastos");
+        jButton2.addActionListener(formListener);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -356,6 +360,8 @@ public class Fact_factura extends JPanel {
                     .addComponent(masterScrollPane)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,9 +380,9 @@ public class Fact_factura extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cedulaLabel)
                     .addComponent(cedulaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -438,13 +444,18 @@ public class Fact_factura extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigoLabel)
                     .addComponent(codigoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton)
-                    .addComponent(newButton)
-                    .addComponent(refreshButton))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteButton)
+                            .addComponent(newButton)
+                            .addComponent(refreshButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jButton2)))
+                .addGap(49, 49, 49))
         );
 
         bindingGroup.bind();
@@ -455,7 +466,10 @@ public class Fact_factura extends JPanel {
     private class FormListener implements java.awt.event.ActionListener, java.awt.event.FocusListener, java.awt.event.KeyListener, java.awt.event.MouseListener, java.beans.PropertyChangeListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            if (evt.getSource() == saveButton) {
+            if (evt.getSource() == rucField) {
+                Fact_factura.this.rucFieldActionPerformed(evt);
+            }
+            else if (evt.getSource() == saveButton) {
                 Fact_factura.this.saveButtonActionPerformed(evt);
             }
             else if (evt.getSource() == refreshButton) {
@@ -470,11 +484,11 @@ public class Fact_factura extends JPanel {
             else if (evt.getSource() == jButton1) {
                 Fact_factura.this.jButton1ActionPerformed(evt);
             }
-            else if (evt.getSource() == rucField) {
-                Fact_factura.this.rucFieldActionPerformed(evt);
-            }
             else if (evt.getSource() == jComboBox1) {
                 Fact_factura.this.jComboBox1ActionPerformed(evt);
+            }
+            else if (evt.getSource() == jButton2) {
+                Fact_factura.this.jButton2ActionPerformed(evt);
             }
         }
 
@@ -568,9 +582,16 @@ public class Fact_factura extends JPanel {
         saludField.setEnabled(false);
         vestimentaField.setEnabled(false);
         otrosField.setEnabled(false);
-
+        inicializar();
     }//GEN-LAST:event_newButtonActionPerformed
-
+    private void inicializar() {
+        viviendaField.setText("0.00");
+        educacionField.setText("0.00");
+        alimentacionField.setText("0.00");
+        saludField.setText("0.00");
+        vestimentaField.setText("0.00");
+        otrosField.setText("0.00");
+    }
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
             entityManager.getTransaction().commit();
@@ -674,7 +695,7 @@ public class Fact_factura extends JPanel {
         if (jComboBox1.getSelectedIndex() == 5) {
             String respuesta = JOptionPane.showInputDialog("Escriba valor total de vestimenta");
             vestimentaField.setText(respuesta);
-            
+
 //            vestimentaField.setEnabled(true);
         }
         if (jComboBox1.getSelectedIndex() == 6) {
@@ -684,7 +705,24 @@ public class Fact_factura extends JPanel {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        sumar();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void sumar() {
+        int totalRow = masterTable.getRowCount();
+        totalRow -= 1;
+        for (int j = 6; j < 12; j++) {
+            double sumatoria = 0;
+            double sumatoria1 = 0;
+            for (int i = 0; i <= (totalRow); i++) {
+                sumatoria = Double.parseDouble(String.valueOf(masterTable.getValueAt(i, j)));
+            }
+            sumatoria1 += sumatoria;
+            JOptionPane.showMessageDialog(null, "total_" + masterTable.getColumnName(j) + ":" + sumatoria1);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alimentacionField;
     private javax.swing.JLabel alimentacionLabel;
@@ -702,6 +740,7 @@ public class Fact_factura extends JPanel {
     private javax.swing.JTextField ivaField;
     private javax.swing.JLabel ivaLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private java.util.List<presentacionxml.Factura> list;

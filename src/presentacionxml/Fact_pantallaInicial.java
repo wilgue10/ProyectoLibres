@@ -163,7 +163,7 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
 //
         p1.run();
 
-        this.hide();
+//        this.hide();
 
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
