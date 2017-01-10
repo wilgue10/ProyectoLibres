@@ -25,31 +25,31 @@ import javax.swing.table.DefaultTableModel;
  * @author Wilmer
  */
 public class Fact_factura extends JPanel {
-
+    
     public Fact_factura() {
         initComponents();
         if (!Beans.isDesignTime()) {
             entityManager.getTransaction().begin();
-
+            
         }
-
+        
     }
     public Factura factura;
     DefaultTableModel listFacturasUsuario = new DefaultTableModel();
-
+    
     public Factura getFactura() {
         return factura;
     }
-
+    
     public void setFactura(Factura factura) {
         this.factura = factura;
     }
     public String rucProveedor = "busque un proveedor";
-
+    
     public String getRucProveedor() {
         return rucProveedor;
     }
-
+    
     public void setRucProveedor(String rucProveedor) {
         this.rucProveedor = rucProveedor;
     }
@@ -381,7 +381,7 @@ public class Fact_factura extends JPanel {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cedulaLabel)
@@ -451,7 +451,7 @@ public class Fact_factura extends JPanel {
                     .addComponent(newButton)
                     .addComponent(refreshButton)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107))
+                .addGap(65, 65, 65))
         );
 
         bindingGroup.bind();
@@ -636,7 +636,7 @@ public class Fact_factura extends JPanel {
         // TODO add your handling code here:
         try {
             fechaField.setText(sdf.format(calendario.getDate()));
-
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_calendarioPropertyChange
@@ -661,7 +661,7 @@ public class Fact_factura extends JPanel {
         if (numeroFacturaField.getText().length() == 18) {
             numeroFacturaField.setText("");
         }
-
+        
 
     }//GEN-LAST:event_numeroFacturaFieldKeyTyped
 
@@ -703,9 +703,12 @@ public class Fact_factura extends JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        sumar();
+//        sumar();
+        Fact_ResumenGastos facRGastos = new Fact_ResumenGastos();
+        facRGastos.setVisible(true);
+        facRGastos.cargarTabla("1726246828");
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
     public void sumar() {
         int totalRow = masterTable.getRowCount();
         totalRow -= 1;
@@ -797,7 +800,7 @@ public class Fact_factura extends JPanel {
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
+        
         jComboBox1.addItem("Vivienda");
         jComboBox1.addItem("Alimentacion");
         jComboBox1.addItem("Salud");
@@ -805,13 +808,13 @@ public class Fact_factura extends JPanel {
         jComboBox1.addItem("Vestimenta");
         jComboBox1.addItem("otros");
         masterTable.removeAll();
-        cargarTabla("1726246828");
+//        cargarTabla("1726246828");
     }
 //        });
 //    }
 
     public void crearTabla() {
-
+        
         listFacturasUsuario.addColumn("CODIGO");
         listFacturasUsuario.addColumn("CEDULA");
         listFacturasUsuario.addColumn("RUC");
@@ -826,11 +829,11 @@ public class Fact_factura extends JPanel {
         listFacturasUsuario.addColumn("VESTIMENTA");
         listFacturasUsuario.addColumn("OTROS");
         listFacturasUsuario.addColumn("NUMERO_FACTURA");
-
+        
     }
-
+    
     public void cargarTabla(String CI) {
-
+        
         query = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT f FROM Factura f WHERE f.cedula ='" + CI + "'");
 //        list = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(query.getResultList());
         java.util.Collection data = query.getResultList();
@@ -842,7 +845,7 @@ public class Fact_factura extends JPanel {
         System.out.println("data" + list);
         System.out.println("lista" + list.size());
     }
-
+    
     public void cargarProveedor(String ruc) {
         this.run();
         System.out.println("ruc:" + ruc);
@@ -862,9 +865,9 @@ public class Fact_factura extends JPanel {
         otrosField.setEnabled(false);
         inicializar();
         rucProveedor = ruc;
-
+        
         rucField.setText(rucProveedor);
         System.out.println("rucProv" + rucProveedor);
-
+        
     }
 }

@@ -5,6 +5,17 @@
  */
 package presentacionxml;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Wilmer
@@ -17,6 +28,99 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
     public Fact_ResumenGastos() {
         initComponents();
     }
+    DefaultTableModel listFacturasUsuario = new DefaultTableModel();
+    double[] gastosTotales = new double[7];
+    String[] nombreGastos = new String[7];
+
+    private Connection connectionBaseProyectoLibres = null;
+
+    private void CrearTabla() {
+
+        listFacturasUsuario.addColumn("CODIGO");
+        listFacturasUsuario.addColumn("CEDULA");
+        listFacturasUsuario.addColumn("RUC");
+        listFacturasUsuario.addColumn("FECHA");
+        listFacturasUsuario.addColumn("TOTAL_SIN_IVA");
+        listFacturasUsuario.addColumn("IVA");
+        listFacturasUsuario.addColumn("TOTAL_CON_IVA");
+        listFacturasUsuario.addColumn("VIVIENDA");
+        listFacturasUsuario.addColumn("ALIMENTACION");
+        listFacturasUsuario.addColumn("SALUD");
+        listFacturasUsuario.addColumn("EDUCACION");
+        listFacturasUsuario.addColumn("VESTIMENTA");
+        listFacturasUsuario.addColumn("OTROS");
+        listFacturasUsuario.addColumn("NUMERO_FACTURA");
+
+    }
+
+    private void conectarAbaseProyectoLibres() {
+        try {
+            connectionBaseProyectoLibres = DriverManager.getConnection("jdbc:mysql://localhost:3306/libresfacturaproyecto", "root", "basQUET23");
+            System.out.println("Connection OK!");
+        } catch (SQLException e) {
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    public void sumar() {
+        int totalRow = detalleGastosJtable.getRowCount();
+        totalRow -= 1;
+        int index = 0;
+        for (int j = 7; j < 13; j++) {
+            double sumatoria = 0;
+
+            for (int i = 0; i <= (totalRow); i++) {
+                gastosTotales[i] = gastosTotales[i] + Double.parseDouble(String.valueOf(detalleGastosJtable.getValueAt(i, j)));
+                sumatoria = sumatoria + Double.parseDouble(String.valueOf(detalleGastosJtable.getValueAt(i, j)));
+
+            }
+
+            nombreGastos[index] = detalleGastosJtable.getColumnName(j);
+            index++;
+//            JOptionPane.showMessageDialog(null, "total_" + detalleGastosJtable.getColumnName(j) + ":" + sumatoria);
+        }
+        cargarListaGastos();
+    }
+
+    private void cargarListaGastos() {
+
+        DefaultListModel modelo = new DefaultListModel();
+        DefaultListModel modeloGastos = new DefaultListModel();
+        String[] totalesNombre = new String[7];
+        for (int i = 0; i < 6; i++) {
+            totalesNombre[i] = nombreGastos[i] + "=" + gastosTotales[i];
+            modelo.addElement(nombreGastos[i]);
+            modeloGastos.addElement(gastosTotales[i]);
+        }
+        Nombretotalesjlist.setModel(modelo);
+        totalesJlist.setModel(modeloGastos);
+        Nombretotalesjlist.setListData(totalesNombre);
+    }
+
+    public void cargarTabla(String CI) {
+        System.out.println("ci" + CI);
+        conectarAbaseProyectoLibres();
+        CrearTabla();
+        try {
+            Statement st = connectionBaseProyectoLibres.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Factura f WHERE f.cedula ='" + CI + "'");
+            while (rs.next()) {
+                Object dato[] = new Object[14];
+                for (int i = 0; i < 13; i++) {
+                    dato[i] = rs.getString(i + 1);
+                    System.out.println("dato" + dato[i]);
+                }
+                listFacturasUsuario.addRow(dato);
+
+            }
+            this.detalleGastosJtable.setModel(listFacturasUsuario);
+        } catch (Exception e) {
+            System.out.println("error" + e.toString());
+        }
+        sumar();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,17 +131,100 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jDialog1 = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        detalleGastosJtable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Nombretotalesjlist = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        totalesJlist = new javax.swing.JList();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        detalleGastosJtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(detalleGastosJtable);
+
+        jLabel1.setText("Resumen gastos");
+
+        jScrollPane2.setViewportView(Nombretotalesjlist);
+
+        jScrollPane3.setViewportView(totalesJlist);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(227, 227, 227)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(388, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(99, 99, 99))
         );
 
         pack();
@@ -46,38 +233,48 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fact_ResumenGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fact_ResumenGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fact_ResumenGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fact_ResumenGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Fact_ResumenGastos().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Fact_ResumenGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Fact_ResumenGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Fact_ResumenGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Fact_ResumenGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Fact_ResumenGastos().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList Nombretotalesjlist;
+    private javax.swing.JTable detalleGastosJtable;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList totalesJlist;
     // End of variables declaration//GEN-END:variables
 }
