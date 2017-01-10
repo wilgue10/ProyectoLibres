@@ -35,59 +35,59 @@ public class buscarProveedor extends javax.swing.JFrame {
     presentacionxml.Proveedor p;
     Fact_factura fact = new Fact_factura();
     public Fact_factura factura;
-
+    
     public Proveedor getP() {
         return p;
     }
-
+    
     public void setP(Proveedor p) {
         this.p = p;
     }
-
+    
     public String getNomb() {
         return Nomb;
     }
-
+    
     public void setNomb(String Nomb) {
         this.Nomb = Nomb;
     }
-
+    
     public String getCod() {
         return Cod;
     }
-
+    
     public void setCod(String Cod) {
         this.Cod = Cod;
     }
-
+    
     public void mostrardatos() {
         conectarAbaseProyectoLibres();
         DefaultTableModel tablaproveedor = new DefaultTableModel();
         try {
             Statement st = connectionBaseProyectoLibres.createStatement();
-
+            
             tablaproveedor.addColumn("ruc");
             tablaproveedor.addColumn("direccion");
             tablaproveedor.addColumn("telefono");
             tablaproveedor.addColumn("ciudad");
             tablaproveedor.addColumn("nombre/razon social");
-
+            
             CallableStatement cst;
-
+            
             ResultSet rs = st.executeQuery("SELECT * from proveedor");
             while (rs.next()) {
                 Object dato[] = new Object[7];
                 for (int i = 0; i < 5; i++) {
                     dato[i] = rs.getString(i + 1);
-
+                    
                 }
                 tablaproveedor.addRow(dato);
             }
             this.tabla.setModel(tablaproveedor);
-
+            
         } catch (Exception e) {
         }
-
+        
     }
 
     /**
@@ -185,7 +185,7 @@ public class buscarProveedor extends javax.swing.JFrame {
 private void conectarAbaseProyectoLibres() {
         try {
             connectionBaseProyectoLibres = DriverManager.getConnection("jdbc:mysql://localhost:3306/libresfacturaproyecto", "root", "basQUET23");
-
+            
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");
             e.printStackTrace();
@@ -194,31 +194,31 @@ private void conectarAbaseProyectoLibres() {
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String cod = this.buscar.getText();
-
+        
         DefaultTableModel Proveedor = new DefaultTableModel();
         try {
-
+            
             Statement st = connectionBaseProyectoLibres.createStatement();
-
+            
             Proveedor.addColumn("ruc");
             Proveedor.addColumn("direccion");
             Proveedor.addColumn("telefono");
             Proveedor.addColumn("ciudad");
             Proveedor.addColumn("nombre/razon social");
-
+            
             CallableStatement cst;
-
+            
             ResultSet rs = st.executeQuery("SELECT * from proveedor where RUC ='" + cod + "'");
-
+            
             if (rs.next()) {
                 Object dato[] = new Object[5];
                 for (int i = 0; i < 4; i++) {
                     dato[i] = rs.getString(i + 1);
-
+                    
                 }
                 Proveedor.addRow(dato);
                 JOptionPane.showMessageDialog(null, "Proveedor encontrado!");
-
+                
                 this.tabla.setModel(Proveedor);
             } else {
                 JOptionPane.showMessageDialog(null, "Proveedor  NO encontrado!");
@@ -228,33 +228,33 @@ private void conectarAbaseProyectoLibres() {
                     this.hide();
                     Fact_proveedor p2 = new Fact_proveedor();
                     p2.run();
-
+                    
                     mostrardatos();
-
+                    
                 }
-
+                
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "error " + e);
         }
-
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-
+        
         String cod;
-
+        
         int fila = tabla.getSelectedRow();
         if (fila >= 0) {
-
+            
             buscar.setText(tabla.getValueAt(fila, 0).toString());
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "no seleciono fila");
         }
-
+        
 
     }//GEN-LAST:event_tablaMouseClicked
 
@@ -275,7 +275,7 @@ private void conectarAbaseProyectoLibres() {
 ////            fact.setRucProveedor(cod);
 
             this.hide();
-
+            
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -287,7 +287,7 @@ private void conectarAbaseProyectoLibres() {
      */
 //    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
      */
@@ -316,7 +316,8 @@ private void conectarAbaseProyectoLibres() {
 //        JFrame frame = new JFrame();
 //                frame.setContentPane(new buscarProveedor());
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        new buscarProveedor().setVisible(true);
+        buscarProveedor bp = new buscarProveedor();
+        bp.setVisible(true);
 //                frame.pack();
 //                frame.setVisible(true);
 

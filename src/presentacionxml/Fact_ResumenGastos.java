@@ -22,6 +22,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Fact_ResumenGastos extends javax.swing.JFrame {
 
+    private Object viviendaField;
+
     /**
      * Creates new form Fact_ResumenGastos
      */
@@ -31,7 +33,7 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
     DefaultTableModel listFacturasUsuario = new DefaultTableModel();
     double[] gastosTotales = new double[7];
     String[] nombreGastos = new String[7];
-
+    double[] maximoGastos = new double[7];
     private Connection connectionBaseProyectoLibres = null;
 
     private void CrearTabla() {
@@ -85,18 +87,28 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
     }
 
     private void cargarListaGastos() {
-
+        cargarMaximoGastos(valorFBD);
         DefaultListModel modelo = new DefaultListModel();
         DefaultListModel modeloGastos = new DefaultListModel();
         String[] totalesNombre = new String[7];
         for (int i = 0; i < 6; i++) {
             totalesNombre[i] = nombreGastos[i] + "=" + gastosTotales[i];
             modelo.addElement(nombreGastos[i]);
-            modeloGastos.addElement(gastosTotales[i]);
+            modeloGastos.addElement(maximoGastos[i]);
         }
-        Nombretotalesjlist.setModel(modelo);
-        totalesJlist.setModel(modeloGastos);
-        Nombretotalesjlist.setListData(totalesNombre);
+        totalesTipoGasto.setModel(modelo);
+        montoMaximo.setModel(modeloGastos);
+        totalesTipoGasto.setListData(totalesNombre);
+    }
+
+    private void cargarMaximoGastos(double FBD) {
+        maximoGastos[0] = 0.325 * FBD;
+        maximoGastos[1] = 0.325 * FBD;
+        maximoGastos[2] = 1.3 * FBD;
+        maximoGastos[3] = 0.325 * FBD;
+        maximoGastos[4] = 0.325 * FBD;
+        maximoGastos[5] = 0.325 * FBD;
+        
     }
 
     public void cargarTabla(String CI) {
@@ -133,14 +145,24 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         jDialog1 = new javax.swing.JDialog();
+        menuBar1 = new java.awt.MenuBar();
+        menu1 = new java.awt.Menu();
+        menu2 = new java.awt.Menu();
         jScrollPane1 = new javax.swing.JScrollPane();
         detalleGastosJtable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Nombretotalesjlist = new javax.swing.JList();
+        totalesTipoGasto = new javax.swing.JList();
         jScrollPane3 = new javax.swing.JScrollPane();
-        totalesJlist = new javax.swing.JList();
+        montoMaximo = new javax.swing.JList();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -164,7 +186,11 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        menu1.setLabel("File");
+        menuBar1.add(menu1);
+
+        menu2.setLabel("Edit");
+        menuBar1.add(menu2);
 
         detalleGastosJtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -179,11 +205,42 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(detalleGastosJtable);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Resumen gastos");
 
-        jScrollPane2.setViewportView(Nombretotalesjlist);
+        jScrollPane2.setViewportView(totalesTipoGasto);
 
-        jScrollPane3.setViewportView(totalesJlist);
+        jScrollPane3.setViewportView(montoMaximo);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("TIPO DE GASTO");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setText("MONTO MÁXIMO");
+
+        jButton1.setText("REGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jMenu1.setText("Archivo");
+
+        jMenuItem1.setText("Ingresar Fracción básica desgravada (FBD)");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("salir");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,15 +258,21 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addComponent(jLabel2)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                                        .addComponent(jButton1)))))
+                        .addGap(45, 45, 45)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(388, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,18 +280,36 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jButton1))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(99, 99, 99))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    double valorFBD = 11170;
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        String respuesta = JOptionPane.showInputDialog("Escriba valor Fracción básica desgravada ");
+        valorFBD = Double.parseDouble(respuesta);
+        cargarMaximoGastos(valorFBD);
+        cargarListaGastos();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,15 +347,25 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList Nombretotalesjlist;
     private javax.swing.JTable detalleGastosJtable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList totalesJlist;
+    private java.awt.Menu menu1;
+    private java.awt.Menu menu2;
+    private java.awt.MenuBar menuBar1;
+    private javax.swing.JList montoMaximo;
+    private javax.swing.JList totalesTipoGasto;
     // End of variables declaration//GEN-END:variables
 }
