@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,9 +30,12 @@ public class Fact_factura extends JPanel {
         initComponents();
         if (!Beans.isDesignTime()) {
             entityManager.getTransaction().begin();
+
         }
+
     }
     public Factura factura;
+    DefaultTableModel listFacturasUsuario = new DefaultTableModel();
 
     public Factura getFactura() {
         return factura;
@@ -301,7 +305,7 @@ public class Fact_factura extends JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione tipo gasto", "Vivienda", "Alimentacion", "Salud", "Educacion", "Vestimenta", "Otros" }));
         jComboBox1.addActionListener(formListener);
 
-        jButton2.setText("Resumen Gastos");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/detallesGastos.png"))); // NOI18N
         jButton2.addActionListener(formListener);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -348,20 +352,16 @@ public class Fact_factura extends JPanel {
                                     .addComponent(totalSinIvaField, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(fechaField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                                     .addComponent(rucField, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(8, 8, 8)))
-                                .addGap(63, 63, 63))))
+                                    .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(masterScrollPane)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,7 +369,7 @@ public class Fact_factura extends JPanel {
                         .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155))))
+                        .addGap(103, 103, 103))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(286, 286, 286)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -381,7 +381,7 @@ public class Fact_factura extends JPanel {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cedulaLabel)
@@ -444,18 +444,14 @@ public class Fact_factura extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigoLabel)
                     .addComponent(codigoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteButton)
-                            .addComponent(newButton)
-                            .addComponent(refreshButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton2)))
-                .addGap(49, 49, 49))
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton)
+                    .addComponent(newButton)
+                    .addComponent(refreshButton)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(107, 107, 107))
         );
 
         bindingGroup.bind();
@@ -611,8 +607,8 @@ public class Fact_factura extends JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         buscarProveedor p = new buscarProveedor();
-        p.setVisible(true);
-        rucProveedor = p.Cod;
+        p.run();
+        this.hide();
         System.out.println("buRuc" + rucProveedor);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -808,14 +804,63 @@ public class Fact_factura extends JPanel {
         jComboBox1.addItem("Educacion");
         jComboBox1.addItem("Vestimenta");
         jComboBox1.addItem("otros");
-
+        masterTable.removeAll();
+        cargarTabla("1726246828");
     }
 //        });
 //    }
 
-    public void cargarProveedor(String ruc) {
-        System.out.println("ruc:" + ruc);
+    public void crearTabla() {
 
+        listFacturasUsuario.addColumn("CODIGO");
+        listFacturasUsuario.addColumn("CEDULA");
+        listFacturasUsuario.addColumn("RUC");
+        listFacturasUsuario.addColumn("FECHA");
+        listFacturasUsuario.addColumn("TOTAL_SIN_IVA");
+        listFacturasUsuario.addColumn("IVA");
+        listFacturasUsuario.addColumn("TOTAL_CON_IVA");
+        listFacturasUsuario.addColumn("VIVIENDA");
+        listFacturasUsuario.addColumn("ALIMENTACION");
+        listFacturasUsuario.addColumn("SALUD");
+        listFacturasUsuario.addColumn("EDUCACION");
+        listFacturasUsuario.addColumn("VESTIMENTA");
+        listFacturasUsuario.addColumn("OTROS");
+        listFacturasUsuario.addColumn("NUMERO_FACTURA");
+
+    }
+
+    public void cargarTabla(String CI) {
+
+        query = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT f FROM Factura f WHERE f.cedula ='" + CI + "'");
+//        list = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(query.getResultList());
+        java.util.Collection data = query.getResultList();
+        for (Object entity : data) {
+            entityManager.refresh(entity);
+        }
+        list.clear();
+        list.addAll(data);
+        System.out.println("data" + list);
+        System.out.println("lista" + list.size());
+    }
+
+    public void cargarProveedor(String ruc) {
+        this.run();
+        System.out.println("ruc:" + ruc);
+        presentacionxml.Factura f = new presentacionxml.Factura();
+        entityManager.persist(f);
+        list.add(f);
+        int row = list.size() - 1;
+        masterTable.setRowSelectionInterval(row, row);
+        masterTable.scrollRectToVisible(masterTable.getCellRect(row, 0, true));
+        fechaField.setText(fecha.toString());
+        //tipos de gastos bloqueados
+        viviendaField.setEnabled(false);
+        educacionField.setEnabled(false);
+        alimentacionField.setEnabled(false);
+        saludField.setEnabled(false);
+        vestimentaField.setEnabled(false);
+        otrosField.setEnabled(false);
+        inicializar();
         rucProveedor = ruc;
 
         rucField.setText(rucProveedor);

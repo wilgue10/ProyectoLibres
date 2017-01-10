@@ -162,7 +162,7 @@ public class Fact_LoginForm extends javax.swing.JFrame {
 ////                form2.setVisible(true);
 ////                new menu().setVisible(true);
                     Fact_pantallaInicial p1 = new Fact_pantallaInicial();
-
+                            
                     p1.setVisible(true);
 
                     this.hide();
