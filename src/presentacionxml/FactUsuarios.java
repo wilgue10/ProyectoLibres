@@ -132,6 +132,8 @@ public class FactUsuarios extends JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), passwordField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
+        passwordField.addFocusListener(formListener);
+
         nombreField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nombre}"), nombreField, org.jdesktop.beansbinding.BeanProperty.create("text"));
@@ -277,6 +279,9 @@ public class FactUsuarios extends JPanel {
             if (evt.getSource() == ciField) {
                 FactUsuarios.this.ciFieldActionPerformed(evt);
             }
+            else if (evt.getSource() == nombreField) {
+                FactUsuarios.this.nombreFieldActionPerformed(evt);
+            }
             else if (evt.getSource() == apellidoField) {
                 FactUsuarios.this.apellidoFieldActionPerformed(evt);
             }
@@ -294,9 +299,6 @@ public class FactUsuarios extends JPanel {
             }
             else if (evt.getSource() == paswordVerificarField) {
                 FactUsuarios.this.paswordVerificarFieldActionPerformed(evt);
-            }
-            else if (evt.getSource() == nombreField) {
-                FactUsuarios.this.nombreFieldActionPerformed(evt);
             }
         }
 
@@ -318,6 +320,9 @@ public class FactUsuarios extends JPanel {
             }
             else if (evt.getSource() == paswordVerificarField) {
                 FactUsuarios.this.paswordVerificarFieldFocusLost(evt);
+            }
+            else if (evt.getSource() == passwordField) {
+                FactUsuarios.this.passwordFieldFocusLost(evt);
             }
         }
 
@@ -368,7 +373,7 @@ public class FactUsuarios extends JPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 
-        if (validar.validadorDeCedula(ciField.getText()) && verificarContraseña()) {
+       
             try {
                 entityManager.getTransaction().commit();
                 entityManager.getTransaction().begin();
@@ -382,7 +387,7 @@ public class FactUsuarios extends JPanel {
                 list.clear();
                 list.addAll(merged);
             }
-        }
+        
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void ciFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciFieldActionPerformed
@@ -400,7 +405,11 @@ public class FactUsuarios extends JPanel {
 
         if (!validar.VerificarNumero(ciField.getText()) || ciField.getText().length() != 10) {
             ciField.setText("");
-        }
+        }else {
+         if (!validar.validadorDeCedula(ciField.getText())){
+         ciField.setText("");
+         }
+    }
 
 
     }//GEN-LAST:event_ciFieldFocusLost
@@ -412,9 +421,9 @@ public class FactUsuarios extends JPanel {
     private void nombreFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreFieldFocusLost
         // TODO add your handling code here:
 
-        if (!validar.VerificarNumero(nombreField.getText())) {
-            nombreField.setText("");
-        }
+//        if (validar.VerificarNumero(nombreField.getText())) {
+//            nombreField.setText("");
+//        }
 
 
     }//GEN-LAST:event_nombreFieldFocusLost
@@ -426,30 +435,30 @@ public class FactUsuarios extends JPanel {
     private void apellidoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoFieldFocusLost
         // TODO add your handling code here:
 
-        if (!validar.VerificarNumero(apellidoField.getText())) {
-            apellidoField.setText("");
-        }
+//        if (validar.VerificarNumero(apellidoField.getText())) {
+//            apellidoField.setText("");
+//        }
 
 
     }//GEN-LAST:event_apellidoFieldFocusLost
-    private boolean verificarContraseña() {
-        String p1 = passwordField.getText();
-        String p2 = paswordVerificarField.getText();
-        boolean bandera = false;
-        if (p1.equals(p2)) {
-            bandera = validar.password(p1, p2);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-            System.out.println("p1" + passwordField.getText());
-            System.out.println("p1" + paswordVerificarField.getText());
-
-            passwordField.setText("");
-            paswordVerificarField.setText("");
-
-        }
-        return bandera;
-    }
+//    private boolean verificarContraseña() {
+//        String p1 = passwordField.getText();
+//        String p2 = paswordVerificarField.getText();
+//        boolean bandera = false;
+//        if (p1.equals(p2)) {
+//            bandera = validar.password(p1, p2);
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+//            System.out.println("p1" + passwordField.getText());
+//            System.out.println("p1" + paswordVerificarField.getText());
+//
+//            passwordField.setText("");
+//            paswordVerificarField.setText("");
+//
+//        }
+//        return bandera;
+//    }
     private void paswordVerificarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paswordVerificarFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_paswordVerificarFieldActionPerformed
@@ -462,6 +471,10 @@ public class FactUsuarios extends JPanel {
     private void nombreFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreFieldActionPerformed
+
+    private void passwordFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
