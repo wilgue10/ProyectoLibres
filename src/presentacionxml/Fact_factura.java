@@ -156,7 +156,7 @@ public class Fact_factura extends JPanel {
         columnBinding.setColumnName("Codigo");
         columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
-
+        jTableBinding.bind();
         masterScrollPane.setViewportView(masterTable);
 
         cedulaLabel.setText("Cedula:");

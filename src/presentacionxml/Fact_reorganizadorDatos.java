@@ -25,7 +25,7 @@ public class Fact_reorganizadorDatos {
 
     private void conectarAbasePruebas() {
         try {
-            connectionBasePruebas = DriverManager.getConnection("jdbc:mysql://localhost:3306/pruebafacturas", "root", "basQUET23");
+            connectionBasePruebas = DriverManager.getConnection("jdbc:mysql://localhost:3306/pruebafacturas", "root", "cubos1301");
 
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");
@@ -36,7 +36,7 @@ public class Fact_reorganizadorDatos {
 
     private void conectarAbaseProyectoLibres() {
         try {
-            connectionBaseProyectoLibres = DriverManager.getConnection("jdbc:mysql://localhost:3306/libresfacturaproyecto", "root", "basQUET23");
+            connectionBaseProyectoLibres = DriverManager.getConnection("jdbc:mysql://localhost:3306/libresfacturaproyecto", "root", "cubos1301");
 
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");

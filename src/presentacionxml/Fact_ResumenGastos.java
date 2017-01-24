@@ -57,7 +57,7 @@ public class Fact_ResumenGastos extends javax.swing.JFrame {
 
     private void conectarAbaseProyectoLibres() {
         try {
-            connectionBaseProyectoLibres = DriverManager.getConnection("jdbc:mysql://localhost:3306/libresfacturaproyecto", "root", "basQUET23");
+            connectionBaseProyectoLibres = DriverManager.getConnection("jdbc:mysql://localhost:3306/libresfacturaproyecto", "root", "cubos1301");
             System.out.println("Connection OK!");
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");

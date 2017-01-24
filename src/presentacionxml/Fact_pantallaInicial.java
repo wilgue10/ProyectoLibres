@@ -39,6 +39,9 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
         saveMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -107,6 +110,24 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
         fileMenu.add(jMenuItem2);
 
         menuBar.add(fileMenu);
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/admin.png"))); // NOI18N
+        jMenu3.setText("Gastos del Negocio");
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pdf.png"))); // NOI18N
+        jMenuItem3.setText("FacturasXML");
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/document-new (1).png"))); // NOI18N
+        jMenuItem4.setText("Facturas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        menuBar.add(jMenu3);
 
         helpMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ayuda_1.png"))); // NOI18N
         helpMenu.setMnemonic('h');
@@ -186,6 +207,10 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_jMenu1MouseClicked
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -231,8 +256,11 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;

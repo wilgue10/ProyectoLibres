@@ -184,7 +184,7 @@ public class buscarProveedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 private void conectarAbaseProyectoLibres() {
         try {
-            connectionBaseProyectoLibres = DriverManager.getConnection("jdbc:mysql://localhost:3306/libresfacturaproyecto", "root", "basQUET23");
+            connectionBaseProyectoLibres = DriverManager.getConnection("jdbc:mysql://localhost:3306/libresfacturaproyecto", "root", "cubos1301");
             
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");

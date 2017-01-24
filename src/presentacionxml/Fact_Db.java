@@ -20,7 +20,7 @@ public class Fact_Db {
     public static Connection connect(){
     String url = "jdbc:mysql://localhost:3306/libresfacturaepn";
     String user = "root";
-    String pass = "basQUET23";
+    String pass = "cubos1301";
     System.out.println("Conectando...");
     try{
          connection = DriverManager.getConnection(url, user,pass);

@@ -10,7 +10,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pruebafacturas?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="basQUET23"/>
+      <property name="javax.persistence.jdbc.password" value="cubos1301"/>
     </properties>
   </persistence-unit>
   <persistence-unit name="libresfacturaproyecto?zeroDateTimeBehavior=convertToNullPU" transaction-type="RESOURCE_LOCAL">
@@ -21,7 +21,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/libresfacturaproyecto?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="basQUET23"/>
+      <property name="javax.persistence.jdbc.password" value="cubos1301"/>
     </properties>
   </persistence-unit>
   <persistence-unit name="libresfacturaepn?zeroDateTimeBehavior=convertToNullPU" transaction-type="RESOURCE_LOCAL">
@@ -31,7 +31,17 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/libresfacturaepn?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="basQUET23"/>
+      <property name="javax.persistence.jdbc.password" value="cubos1301"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="samplePU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>presentacionxml.Customer</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
+      <property name="javax.persistence.jdbc.user" value="app"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.password" value="app"/>
     </properties>
   </persistence-unit>
 </persistence>

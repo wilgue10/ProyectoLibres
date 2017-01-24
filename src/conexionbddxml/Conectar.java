@@ -19,7 +19,7 @@ public class Conectar {
     public Connection conexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conectar = DriverManager.getConnection("jdbc:mysql://localhost/libresfacturaepn","root","basQUET23");
+            conectar = DriverManager.getConnection("jdbc:mysql://localhost/libresfacturaepn","root","cubos1301");
         System.out.print("SE HA CONECTADO EXITOSAMENTE A LA BASE");
         } 
         catch (Exception e) {
