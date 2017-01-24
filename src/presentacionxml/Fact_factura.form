@@ -558,6 +558,7 @@
         <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="numeroFacturaField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
       <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroFacturaFieldActionPerformed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="numeroFacturaFieldKeyTyped"/>
       </Events>
     </Component>
@@ -568,6 +569,9 @@
         </BindingProperty>
         <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="codigoField" targetPath="enabled" updateStrategy="1" immediately="false"/>
       </BindingProperties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="codigoFieldKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="saveButton">
       <Properties>

@@ -268,6 +268,7 @@ public class Fact_factura extends JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), numeroFacturaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
+        numeroFacturaField.addActionListener(formListener);
         numeroFacturaField.addKeyListener(formListener);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), codigoField, org.jdesktop.beansbinding.BeanProperty.create("text"));
@@ -275,6 +276,8 @@ public class Fact_factura extends JPanel {
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), codigoField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        codigoField.addKeyListener(formListener);
 
         saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save.png"))); // NOI18N
         saveButton.addActionListener(formListener);
@@ -486,6 +489,9 @@ public class Fact_factura extends JPanel {
             else if (evt.getSource() == jButton2) {
                 Fact_factura.this.jButton2ActionPerformed(evt);
             }
+            else if (evt.getSource() == numeroFacturaField) {
+                Fact_factura.this.numeroFacturaFieldActionPerformed(evt);
+            }
         }
 
         public void focusGained(java.awt.event.FocusEvent evt) {
@@ -501,6 +507,9 @@ public class Fact_factura extends JPanel {
         }
 
         public void keyPressed(java.awt.event.KeyEvent evt) {
+            if (evt.getSource() == codigoField) {
+                Fact_factura.this.codigoFieldKeyPressed(evt);
+            }
         }
 
         public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -708,6 +717,14 @@ public class Fact_factura extends JPanel {
         facRGastos.setVisible(true);
         facRGastos.cargarTabla("1726246828");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void numeroFacturaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroFacturaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroFacturaFieldActionPerformed
+
+    private void codigoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigoFieldKeyPressed
     
     public void sumar() {
         int totalRow = masterTable.getRowCount();
