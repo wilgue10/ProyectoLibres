@@ -31,6 +31,7 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         ESCRITORIO = new javax.swing.JDesktopPane();
+        jLusuario = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -62,13 +63,15 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ordenador de Facturas");
 
+        jLusuario.setText("jLabel1");
+
         menuBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 204)));
         menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuBar.setName("FERRETERIA JAVELAR"); // NOI18N
 
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ayuda.png"))); // NOI18N
         fileMenu.setMnemonic('f');
-        fileMenu.setText("Factura");
+        fileMenu.setText("Gastos Personales");
 
         openMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pdf.png"))); // NOI18N
         openMenuItem.setMnemonic('o');
@@ -165,11 +168,17 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(276, 276, 276)
+                .addComponent(jLusuario)
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 227, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(jLusuario)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,6 +232,12 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+         try {
+            Fact_seleccion frame = new Fact_seleccion();
+            frame.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
@@ -268,6 +283,7 @@ public class Fact_pantallaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    public static javax.swing.JLabel jLusuario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
